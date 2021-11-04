@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 
-class MainViewController: UITabBarController{
+class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let svc = SummaryViewController()
+        let svc = UINavigationController(rootViewController: SummaryViewController())
+        svc.navigationBar.backgroundColor  = .white
+        
+        
+
+//        svc.navigationBar.tintColor = .yellow
         let summary = UITabBarItem()
         summary.title = "Summary"
         svc.tabBarItem = summary
@@ -27,3 +32,4 @@ class MainViewController: UITabBarController{
     
     
 }
+
