@@ -8,15 +8,46 @@
 import Foundation
 import UIKit
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        10
+    }
     
-//    let glassChecker: UICollectionView = {
-//        let collection = UICollectionView()
-//        collection.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return collection
-//        
-//    }()
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
+        
+    
+        cell.backgroundColor = .black
+            return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+    
+    let glassChecker: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        
+        layout.itemSize = CGSize(width: 60, height: 60)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        layout.scrollDirection = .horizontal
+        
+        let collection = UICollectionView(frame: CGRect(),
+                                          collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(CupCollectionViewCell.self, forCellWithReuseIdentifier: "CupCollectionViewCell")
+        collection.backgroundColor = .red
+        return collection
+        
+    }()
     
     let SummaryLabel : UILabel = {
         let label = UILabel()
@@ -66,6 +97,8 @@ class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        glassChecker.dataSource = self
+        glassChecker.delegate = self
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         self.view.backgroundColor = UIColor(cgColor:
                                         CGColor(srgbRed: 244, green: 244, blue: 244, alpha: 0.95))
@@ -94,6 +127,17 @@ class SummaryViewController: UIViewController {
          waterProgressBar.heightAnchor.constraint(equalToConstant: 2)
         ]
         NSLayoutConstraint.activate(constraints_waterProgressBar)
+        
+        self.view.addSubview(glassChecker)
+        let constraints_glassChecker = [
+            glassChecker.leftAnchor.constraint(equalTo: view.leftAnchor),
+            glassChecker.rightAnchor.constraint(equalTo: view.rightAnchor),
+            glassChecker.topAnchor.constraint(equalTo: progressLabel.bottomAnchor),
+            glassChecker.heightAnchor.constraint(equalToConstant: 80)
+        ]
+        NSLayoutConstraint.activate(constraints_glassChecker)
+        
  
     }
 }
+

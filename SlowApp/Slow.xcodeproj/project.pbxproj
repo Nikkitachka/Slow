@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */; };
 		2A70F5962730515600D88D37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5952730515600D88D37 /* MainViewController.swift */; };
 		2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5972730537100D88D37 /* SummaryViewController.swift */; };
 		2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A70F5952730515600D88D37 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A70F5972730537100D88D37 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		2AA6E7F7272B2E15004A08B0 /* Slow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A491C6A273538E000AC2037 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				2A70F5972730537100D88D37 /* SummaryViewController.swift */,
+				2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
 		2AA6E7EE272B2E15004A08B0 = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +75,7 @@
 				2AA6E7FC272B2E15004A08B0 /* SceneDelegate.swift */,
 				2AA6E7FE272B2E15004A08B0 /* ViewController.swift */,
 				2A70F5952730515600D88D37 /* MainViewController.swift */,
-				2A70F5972730537100D88D37 /* SummaryViewController.swift */,
+				2A491C6A273538E000AC2037 /* Summary */,
 				2AA6E806272B2E18004A08B0 /* Assets.xcassets */,
 				2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */,
 				2AA6E80B272B2E18004A08B0 /* Info.plist */,
@@ -145,6 +156,7 @@
 				2AA6E7FF272B2E15004A08B0 /* ViewController.swift in Sources */,
 				2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */,
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
+				2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */,
 				2AA6E7FD272B2E15004A08B0 /* SceneDelegate.swift in Sources */,
 				2A70F5962730515600D88D37 /* MainViewController.swift in Sources */,
 				2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */,
