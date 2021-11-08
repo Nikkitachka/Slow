@@ -24,7 +24,16 @@ class MainViewController: UITabBarController {
         self.navigationItem.titleView?.isHidden = true
 //        вставьте свое
 //        item.image = UIImage(named: "home_icon")
-        self.viewControllers = [svc]
+        
+        
+        
+        
+        
+        let pvc = UINavigationController(rootViewController: ProfileViewController())
+        let profile = UITabBarItem()
+        profile.title = "Profile"
+        pvc.tabBarItem = profile
+        self.viewControllers = [svc,pvc]
         
     }
     

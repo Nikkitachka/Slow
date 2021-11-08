@@ -26,24 +26,42 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
         
         if indexPath[1] + 1 == currentNumberOfCupsOfWater + 1 {
-            cell.backgroundColor = .white
-            cell.image = cell.plusImage
+            
+            cell.cellForAdd()
         } else {
-            cell.backgroundColor = .black
+            cell.defaultCell()
         }
         
             return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        if indexPath[1] + 1 == currentNumberOfCupsOfWater + 1 {
+            currentNumberOfCupsOfWater += 1
+            collectionView.insertItems(at: [indexPath])
+            
+            let lastSection = collectionView.numberOfSections - 1
+            let lastRow = collectionView.numberOfItems(inSection: lastSection)
+            let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            
+            
+        } else {
+            currentNumberOfCupsOfWater -= 1
+            collectionView.deleteItems(at: [indexPath])
+            
+        }
+        
+        waterProgressBar.setValue(Float(currentNumberOfCupsOfWater) / Float(goalOfNumberOfCupsOfWater),
+                                  animated: true)
+        CurrentCuplabel.text = "Выпито: \(currentNumberOfCupsOfWater)/\(goalOfNumberOfCupsOfWater)"
     }
     
     let glassChecker: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        layout.itemSize = CGSize(width: 60, height: 60)
+        layout.itemSize = CGSize(width: 80, height: 80)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 12
         
@@ -53,7 +71,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
                                           collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(CupCollectionViewCell.self, forCellWithReuseIdentifier: "CupCollectionViewCell")
-        collection.backgroundColor = .red
+        collection.backgroundColor = .white
         return collection
         
     }()
@@ -80,32 +98,48 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
 //        slider.track
         return slider
     }()
-    let progressLabel : UIView = {
+    
+    
+    let CurrentCuplabel = UILabel()
+        
+    let ChampionLabel : UILabel = {
         let label = UILabel()
-        label.text = "Выпито: 0/10"
-        label.textAlignment = .natural
-        label.font = .boldSystemFont(ofSize: 24)
+        label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        
-        let back = UIView()
-        back.backgroundColor = .white
-        back.translatesAutoresizingMaskIntoConstraints = false
-        back.addSubview(label)
-        let constraints = [
-            label.leftAnchor.constraint(equalTo: back.leftAnchor, constant: 16),
-            label.topAnchor.constraint(equalTo: back.topAnchor, constant: 16),
-            label.rightAnchor.constraint(equalTo: back.rightAnchor),
-            label.bottomAnchor.constraint(equalTo: back.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
-        return back
-        
+        label.text = "Текущая серия 72 дня\n Это рекорд 💪"
+        label.numberOfLines = 3
+        label.layer.cornerRadius = 13
+        label.clipsToBounds = true;
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+//        label.contentMode = .center
+        return label
     }()
+        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        CurrentCuplabel.text = "Выпито: \(currentNumberOfCupsOfWater)/\(goalOfNumberOfCupsOfWater)"
+        CurrentCuplabel.textAlignment = .natural
+        CurrentCuplabel.font = .boldSystemFont(ofSize: 24)
+        CurrentCuplabel.translatesAutoresizingMaskIntoConstraints = false
+        CurrentCuplabel.backgroundColor = .clear
         
+        let progressLabel = UIView()
+        progressLabel.backgroundColor = .white
+        progressLabel.translatesAutoresizingMaskIntoConstraints = false
+        progressLabel.addSubview(CurrentCuplabel)
+        let constraints = [
+            CurrentCuplabel.leftAnchor.constraint(equalTo: progressLabel.leftAnchor, constant: 16),
+            CurrentCuplabel.topAnchor.constraint(equalTo: progressLabel.topAnchor, constant: 16),
+            CurrentCuplabel.rightAnchor.constraint(equalTo: progressLabel.rightAnchor),
+            CurrentCuplabel.bottomAnchor.constraint(equalTo: progressLabel.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+
+        waterProgressBar.setValue(Float(currentNumberOfCupsOfWater) / Float(goalOfNumberOfCupsOfWater),
+                                  animated: true)
         glassChecker.dataSource = self
         glassChecker.delegate = self
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
@@ -142,11 +176,18 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
             glassChecker.leftAnchor.constraint(equalTo: view.leftAnchor),
             glassChecker.rightAnchor.constraint(equalTo: view.rightAnchor),
             glassChecker.topAnchor.constraint(equalTo: progressLabel.bottomAnchor),
-            glassChecker.heightAnchor.constraint(equalToConstant: 80)
+            glassChecker.heightAnchor.constraint(equalToConstant: 120)
         ]
         NSLayoutConstraint.activate(constraints_glassChecker)
-        
- 
+        view.addSubview(ChampionLabel)
+        let ChampionLabel_constraints =
+        [ ChampionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12),
+          ChampionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12),
+          ChampionLabel.topAnchor.constraint(equalTo: glassChecker.bottomAnchor, constant: 12),
+          ChampionLabel.heightAnchor.constraint(equalTo: glassChecker.heightAnchor)
+            
+        ]
+        NSLayoutConstraint.activate(ChampionLabel_constraints)
     }
 }
 
