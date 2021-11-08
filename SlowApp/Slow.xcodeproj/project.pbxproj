@@ -46,8 +46,8 @@
 		2A491C6A273538E000AC2037 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				2A70F5972730537100D88D37 /* SummaryViewController.swift */,
 				2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */,
+				2A70F5972730537100D88D37 /* SummaryViewController.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";

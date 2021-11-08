@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 
 class SummaryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    var currentNumberOfCupsOfWater : Int = 10
+    var goalOfNumberOfCupsOfWater  : Int = 25
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        currentNumberOfCupsOfWater + 1
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -21,8 +25,13 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
         
-    
-        cell.backgroundColor = .black
+        if indexPath[1] + 1 == currentNumberOfCupsOfWater + 1 {
+            cell.backgroundColor = .white
+            cell.image = cell.plusImage
+        } else {
+            cell.backgroundColor = .black
+        }
+        
             return cell
     }
     
@@ -36,7 +45,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         layout.itemSize = CGSize(width: 60, height: 60)
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 12
         
         layout.scrollDirection = .horizontal
         
