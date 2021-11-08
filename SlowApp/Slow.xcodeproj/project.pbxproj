@@ -13,6 +13,8 @@
 		2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6E803272B2E15004A08B0 /* Slow.xcdatamodeld */; };
 		2AA6E807272B2E18004A08B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E806272B2E18004A08B0 /* Assets.xcassets */; };
 		2AA6E80A272B2E18004A08B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */; };
+		5798D0232739C757003D0EDF /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798D0222739C756003D0EDF /* SignUpController.swift */; };
+		5798D0252739C767003D0EDF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798D0242739C767003D0EDF /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2AA6E806272B2E18004A08B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AA6E809272B2E18004A08B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AA6E80B272B2E18004A08B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5798D0222739C756003D0EDF /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		5798D0242739C767003D0EDF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		2AA6E7F9272B2E15004A08B0 /* Slow */ = {
 			isa = PBXGroup;
 			children = (
+				5798D0242739C767003D0EDF /* LoginController.swift */,
+				5798D0222739C756003D0EDF /* SignUpController.swift */,
 				2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */,
 				2AA6E7FC272B2E15004A08B0 /* SceneDelegate.swift */,
 				2AA6E7FE272B2E15004A08B0 /* ViewController.swift */,
@@ -136,6 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5798D0232739C757003D0EDF /* SignUpController.swift in Sources */,
+				5798D0252739C767003D0EDF /* LoginController.swift in Sources */,
 				2AA6E7FF272B2E15004A08B0 /* ViewController.swift in Sources */,
 				2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */,
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
