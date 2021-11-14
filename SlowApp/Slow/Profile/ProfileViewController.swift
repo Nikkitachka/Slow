@@ -7,211 +7,159 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
-    override func viewDidLoad() {
-            super.viewDidLoad()
-        SummaryLabel.text = profileName
-
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.default
-        self.view.backgroundColor = UIColor(cgColor:
-                                        CGColor(srgbRed: 244, green: 244, blue: 244, alpha: 0.95))
-        self.navigationItem.titleView = SummaryLabel
-        self.navigationController?.navigationBar.backgroundColor = .white
-        
-            view.addSubview(scrollView)
-            scrollView.addSubview(scrollViewContainer)
-        
-        
-        
-            scrollViewContainer.addArrangedSubview(redView)
-            
-        
-        
-        
-        
-        
-        
-            scrollViewContainer.addArrangedSubview(blueView)
-            scrollViewContainer.addArrangedSubview(greenView)
-
-        
-        
-        
-        
-        
-        
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
-            scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-            scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-            scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-            scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-            // this is important for scrolling
-            scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        }
-
-        let scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            return scrollView
-        }()
-
-        let scrollViewContainer: UIStackView = {
-            let view = UIStackView()
-
-            view.axis = .vertical
-            view.spacing = 10
-
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-
-        let redView: UIView = {
-            let view = UIView()
-            
-            let profileImageView : UIImageView = {
-                let imageView = UIImageView()
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    var profileImage : UIImage? = UIImage(named: "Rock")
+    var level: Int = 0
+    var numberOfCups : Int = 10
+    
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+            let width  = (view.frame.width)
+            switch indexPath[1] {
+            case 0:
+                return CGSize(width: width, height: width/1.5)
+            case 1:
+                return CGSize(width: width, height: width/3)
+            case 2:
+                return CGSize(width: width, height: width)
+            case 3:
+                return CGSize(width: width, height: width/3)
+//            case 4:
+//                print("Переменная равна 22")
+            default:
+                return CGSize(width: 100, height: width/1.5)
+            }
                 
-                imageView.image = UIImage(named: "Rock.png")
-                imageView.contentMode = .scaleAspectFill
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                return imageView
-            }()
             
-            view.addSubview(profileImageView)
-            let constraint = [
-                profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                profileImageView.heightAnchor.constraint(equalTo: view.heightAnchor),
-                profileImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            ]
-            NSLayoutConstraint.activate(constraint)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.heightAnchor.constraint(equalToConstant: 500).isActive = true
-            view.backgroundColor = .red
-            return view
-        }()
-
-        let blueView: UIView = {
-            let view = UIView()
-            view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            view.backgroundColor = .blue
-            return view
-        }()
-
-        let greenView: UIView = {
-            let view = UIView()
-            view.heightAnchor.constraint(equalToConstant: 1200).isActive = true
-            view.backgroundColor = .green
-            return view
-        }()
+        }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
     
     
-    var profileImage = UIImage(named: "Rock.png")
-    var profileName = "Скала Джонсон"
     
     
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        if indexPath[1] == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageCell
+            let width  = (view.frame.width)
+            cell.profileImageView.layer.cornerRadius = width/1.5/2
+            cell.profileImageView.layer.masksToBounds = false
+            cell.profileImageView.clipsToBounds = true
+    //        cell.backgroundColor = .white
+            return cell
+        } else if indexPath[1] == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
+            cell.setText( text: "Уровень \(level) \n Это означает, что ваша максимальная серия недель — \(level)")
+            
+            return cell
+        } else if indexPath[1] == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupsTableViewCell", for: indexPath) as! CupsTableViewCell
+            
+                
+            return cell
+        } else if indexPath[1] == 3 {
+           
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
+            
+            cell.setText( text: "Зачем пить воду?")
+            cell.layoutIfNeeded()
+    
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageCell
+            let width  = (view.frame.width)
+            cell.profileImageView.layer.cornerRadius = width/1.5/2
+            cell.profileImageView.layer.masksToBounds = false
+            cell.profileImageView.clipsToBounds = true
+    //        cell.backgroundColor = .white
+            return cell
+        }
+        
+       
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath[1] == 3 {
+            
+            self.navigationController?.pushViewController(WhyNeedDrinkWaterController(), animated: true)
+        }
+        else {
+            print(indexPath)
+        }
+    }
+   
+    
+    let allItems: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let width = UIScreen.main.bounds.width
+//        layout.itemSize = CGSize(width:width/2, height: width/2)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 12
+        
+        layout.scrollDirection = .vertical
+        
+        let collection = UICollectionView(frame: CGRect(),
+                                          collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(ProfileImageCell.self, forCellWithReuseIdentifier: "ProfileImageCell")
+        collection.register(LevelLabelCell.self, forCellWithReuseIdentifier: "LevelLabelCell")
+        collection.register(CupsTableViewCell.self, forCellWithReuseIdentifier: "CupsTableViewCell")
+        
+        collection.backgroundColor = .white
+        return collection
+        
+    }()
+    
+    var profileName : String = "Скала Джонсон"
     let SummaryLabel : UILabel = {
         let label = UILabel()
+//        label.text = profileName
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 36)
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
-//
-//
-//    let availableCupsLabel : UILabel = {
-//        let label = UILabel()
-//        label.backgroundColor = .white
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.text = "Доступные стаканы"
-//        label.numberOfLines = 3
-//        label.layer.cornerRadius = 13
-//        label.clipsToBounds = true;
-//        label.font = .boldSystemFont(ofSize: 24)
-//        label.textAlignment = .center
-//
-//        return label
-//    }()
-//
-//    var SeriesText = "Текущая серия 72 дня\n Это рекорд 💪"
-//
-//    let ChampionLabel : UILabel = {
-//        let label = UILabel()
-//        label.backgroundColor = .white
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        label.numberOfLines = 3
-//        label.layer.cornerRadius = 13
-//        label.clipsToBounds = true;
-//        label.font = .boldSystemFont(ofSize: 24)
-//        label.textAlignment = .center
-//        return label
-//    }()
-//
-//
-//    let back: UIScrollView = {
-//        let back = UIScrollView()
-//        back.isScrollEnabled = true
-//
-//        back.backgroundColor = .yellow
-//        back.translatesAutoresizingMaskIntoConstraints = false
-//        return back
-//
-//    }()
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        view.addSubview(back)
-//        let back_constraints = [
-//            back.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-//            back.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            back.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-//            back.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ]
-//        NSLayoutConstraint.activate(back_constraints)
-//
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        allItems.dataSource = self
+        allItems.delegate = self
+        allItems.isScrollEnabled = true
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.default
+        self.view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 244, green: 244, blue: 244, alpha: 0.95))
+        SummaryLabel.text = profileName
+        self.navigationItem.titleView = SummaryLabel
+        self.navigationController?.navigationBar.backgroundColor = .white
+        view.addSubview(allItems)
+        allItems.backgroundColor  = .blue
+        let allItems_constraints =
+        [ allItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+          allItems.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+          allItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+          allItems.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ]
+        NSLayoutConstraint.activate(allItems_constraints)
         
-//
-//
-//
-//
-//
-//        let sizeOfProfileImage = view.frame.width / 2
-//        profileImageView.image = profileImage
-//        profileImageView.clipsToBounds = true
-//        profileImageView.layer.cornerRadius = sizeOfProfileImage/2
-//        back.addSubview(profileImageView)
-//        let profileImageView_constraints =
-//        [profileImageView.centerXAnchor.constraint(equalTo: back.centerXAnchor),
-//         profileImageView.topAnchor.constraint(equalTo: back.topAnchor,constant: 16),
-//         profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor),
-//         profileImageView.heightAnchor.constraint(equalToConstant: sizeOfProfileImage)
-//        ]
-//        NSLayoutConstraint.activate(profileImageView_constraints)
-//        ChampionLabel.text = SeriesText
-//        back.addSubview(ChampionLabel)
-//        let ChampionLabel_constraints = [
-//            ChampionLabel.leftAnchor.constraint(equalTo: back.safeAreaLayoutGuide.leftAnchor,constant: 16),
-//            ChampionLabel.rightAnchor.constraint(equalTo: back.safeAreaLayoutGuide.rightAnchor,constant: -16),
-//            ChampionLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 50),
-//            ChampionLabel.heightAnchor.constraint(equalToConstant: 1000)
-//        ]
-//        NSLayoutConstraint.activate(ChampionLabel_constraints)
-//
-//
-//
-//
-//
-//
-//
-//    }
-//
+    }
+
+
+
 
 }
+

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD8872741760D00E03446 /* ProfileImageCell.swift */; };
+		2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD889274199CB00E03446 /* LevelLabelCell.swift */; };
+		2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */; };
+		2A0BD88E2741AB7600E03446 /* WhyNeedDrinkWaterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */; };
+		2A0BD8912741AD1300E03446 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD8902741AD1300E03446 /* ArticleCell.swift */; };
 		2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */; };
 		2A70F5962730515600D88D37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5952730515600D88D37 /* MainViewController.swift */; };
 		2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5972730537100D88D37 /* SummaryViewController.swift */; };
@@ -20,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A0BD8872741760D00E03446 /* ProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
+		2A0BD889274199CB00E03446 /* LevelLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelLabelCell.swift; sourceTree = "<group>"; };
+		2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupsTableViewCell.swift; sourceTree = "<group>"; };
+		2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhyNeedDrinkWaterController.swift; sourceTree = "<group>"; };
+		2A0BD8902741AD1300E03446 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A70F5952730515600D88D37 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A70F5972730537100D88D37 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0BD88F2741ACA200E03446 /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */,
+				2A0BD8902741AD1300E03446 /* ArticleCell.swift */,
+			);
+			path = Articles;
+			sourceTree = "<group>";
+		};
 		2A491C6A273538E000AC2037 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +96,7 @@
 				2AA6E7FC272B2E15004A08B0 /* SceneDelegate.swift */,
 				2AA6E7FE272B2E15004A08B0 /* ViewController.swift */,
 				2A70F5952730515600D88D37 /* MainViewController.swift */,
+				2A0BD88F2741ACA200E03446 /* Articles */,
 				2AEBB67F2739B00A0014443B /* Profile */,
 				2A491C6A273538E000AC2037 /* Summary */,
 				2AA6E806272B2E18004A08B0 /* Assets.xcassets */,
@@ -91,6 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				2AEBB67D2739B0010014443B /* ProfileViewController.swift */,
+				2A0BD8872741760D00E03446 /* ProfileImageCell.swift */,
+				2A0BD889274199CB00E03446 /* LevelLabelCell.swift */,
+				2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -169,9 +192,14 @@
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
 				2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */,
 				2AA6E7FD272B2E15004A08B0 /* SceneDelegate.swift in Sources */,
+				2A0BD88E2741AB7600E03446 /* WhyNeedDrinkWaterController.swift in Sources */,
+				2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */,
+				2A0BD8912741AD1300E03446 /* ArticleCell.swift in Sources */,
 				2A70F5962730515600D88D37 /* MainViewController.swift in Sources */,
+				2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */,
 				2AEBB67E2739B0010014443B /* ProfileViewController.swift in Sources */,
 				2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */,
+				2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
