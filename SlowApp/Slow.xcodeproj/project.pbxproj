@@ -22,6 +22,12 @@
 		2AA6E807272B2E18004A08B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E806272B2E18004A08B0 /* Assets.xcassets */; };
 		2AA6E80A272B2E18004A08B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */; };
 		2AEBB67E2739B0010014443B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEBB67D2739B0010014443B /* ProfileViewController.swift */; };
+		5752EA332742D9C50085C0FF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA2D2742D9C40085C0FF /* LoginController.swift */; };
+		5752EA342742D9C50085C0FF /* inputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA2E2742D9C40085C0FF /* inputContainer.swift */; };
+		5752EA352742D9C50085C0FF /* finalWaterVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA2F2742D9C40085C0FF /* finalWaterVolume.swift */; };
+		5752EA362742D9C50085C0FF /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA302742D9C40085C0FF /* SignUpController.swift */; };
+		5752EA372742D9C50085C0FF /* switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA312742D9C40085C0FF /* switcher.swift */; };
+		5752EA382742D9C50085C0FF /* ConfigureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA322742D9C50085C0FF /* ConfigureController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		2AA6E809272B2E18004A08B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AA6E80B272B2E18004A08B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AEBB67D2739B0010014443B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Slow/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		5752EA2D2742D9C40085C0FF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5752EA2E2742D9C40085C0FF /* inputContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inputContainer.swift; sourceTree = "<group>"; };
+		5752EA2F2742D9C40085C0FF /* finalWaterVolume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = finalWaterVolume.swift; sourceTree = "<group>"; };
+		5752EA302742D9C40085C0FF /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		5752EA312742D9C40085C0FF /* switcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = switcher.swift; sourceTree = "<group>"; };
+		5752EA322742D9C50085C0FF /* ConfigureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +104,12 @@
 		2AA6E7F9272B2E15004A08B0 /* Slow */ = {
 			isa = PBXGroup;
 			children = (
+				5752EA322742D9C50085C0FF /* ConfigureController.swift */,
+				5752EA2F2742D9C40085C0FF /* finalWaterVolume.swift */,
+				5752EA2E2742D9C40085C0FF /* inputContainer.swift */,
+				5752EA2D2742D9C40085C0FF /* LoginController.swift */,
+				5752EA302742D9C40085C0FF /* SignUpController.swift */,
+				5752EA312742D9C40085C0FF /* switcher.swift */,
 				2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */,
 				2AA6E7FC272B2E15004A08B0 /* SceneDelegate.swift */,
 				2AA6E7FE272B2E15004A08B0 /* ViewController.swift */,
@@ -191,15 +209,21 @@
 				2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */,
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
 				2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */,
+				5752EA372742D9C50085C0FF /* switcher.swift in Sources */,
 				2AA6E7FD272B2E15004A08B0 /* SceneDelegate.swift in Sources */,
+				5752EA342742D9C50085C0FF /* inputContainer.swift in Sources */,
+				5752EA352742D9C50085C0FF /* finalWaterVolume.swift in Sources */,
 				2A0BD88E2741AB7600E03446 /* WhyNeedDrinkWaterController.swift in Sources */,
 				2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */,
+				5752EA362742D9C50085C0FF /* SignUpController.swift in Sources */,
+				5752EA382742D9C50085C0FF /* ConfigureController.swift in Sources */,
 				2A0BD8912741AD1300E03446 /* ArticleCell.swift in Sources */,
 				2A70F5962730515600D88D37 /* MainViewController.swift in Sources */,
 				2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */,
 				2AEBB67E2739B0010014443B /* ProfileViewController.swift in Sources */,
 				2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */,
 				2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */,
+				5752EA332742D9C50085C0FF /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

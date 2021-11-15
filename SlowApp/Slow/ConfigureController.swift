@@ -9,7 +9,11 @@ import UIKit
 
 class ConfigureController: UIViewController {
     
-
+    @objc
+    func goToMainViewController() {
+        navigationController?.pushViewController(MainViewController(), animated: true)
+    }
+    
     let ageInput: inputContainer = {
         let inp = inputContainer()
         
@@ -77,14 +81,27 @@ class ConfigureController: UIViewController {
         return vol
     }()
     
+    let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Далее", for: .normal)
+        button.backgroundColor = UIColor(red: 168/255, green: 242/255, blue: 245/255, alpha: 1)
+        button.layer.cornerRadius = 12
+        if let titleLabel = button.titleLabel {titleLabel.font = UIFont.systemFont(ofSize: 24)}
+        button.setTitleColor(UIColor(white: 0, alpha: 1), for: .normal)
+        button.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
+        button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(goToMainViewController), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
         
-//        view.addSubview(ageInput)
-//        view.addSubview(weightInput)
-//        view.addSubview(heightInput)
+
         setupInputFields()
+        view.addSubview(nextButton)
         
         
     }
@@ -99,6 +116,7 @@ class ConfigureController: UIViewController {
         
         view.addSubview(stackView)
         view.addSubview(finalVol)
+        view.addSubview(nextButton)
         
         
         NSLayoutConstraint.activate([
@@ -110,7 +128,11 @@ class ConfigureController: UIViewController {
             finalVol.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
             finalVol.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
             finalVol.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-            finalVol.heightAnchor.constraint(equalToConstant: 200)
+            finalVol.heightAnchor.constraint(equalToConstant: 200),
+            nextButton.topAnchor.constraint(equalTo: finalVol.bottomAnchor, constant: 12),
+            nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
+            nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+            nextButton.heightAnchor.constraint(equalToConstant: 60)
             ])
         finalVol.layoutIfNeeded()
     }

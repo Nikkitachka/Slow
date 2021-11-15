@@ -14,6 +14,11 @@ class SignUpController: UIViewController {
         navigationController?.pushViewController(LoginController(), animated: true)
     }
     
+    @objc
+    func goToConfigureController() {
+        navigationController?.pushViewController(ConfigureController(), animated: true)
+    }
+    
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .custom)
         let imageLogo = UIImage(named: "tg_image_592672127.jpeg")
@@ -73,6 +78,8 @@ class SignUpController: UIViewController {
         button.setTitleColor(UIColor(white: 0, alpha: 1), for: .normal)
         button.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(goToConfigureController), for: .touchUpInside)
+        
         return button
     }()
     
