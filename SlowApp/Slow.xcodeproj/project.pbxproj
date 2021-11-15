@@ -13,8 +13,13 @@
 		2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6E803272B2E15004A08B0 /* Slow.xcdatamodeld */; };
 		2AA6E807272B2E18004A08B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E806272B2E18004A08B0 /* Assets.xcassets */; };
 		2AA6E80A272B2E18004A08B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */; };
+		5788D6C82742CEE000BB725A /* ConfigureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788D6C72742CEE000BB725A /* ConfigureController.swift */; };
+		5788D6CA2742CF0100BB725A /* inputContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788D6C92742CF0100BB725A /* inputContainer.swift */; };
+		5788D6CC2742CF2800BB725A /* switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788D6CB2742CF2800BB725A /* switcher.swift */; };
+		5788D6CE2742CF3D00BB725A /* finalWaterVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788D6CD2742CF3D00BB725A /* finalWaterVolume.swift */; };
 		5798D0232739C757003D0EDF /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798D0222739C756003D0EDF /* SignUpController.swift */; };
 		5798D0252739C767003D0EDF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798D0242739C767003D0EDF /* LoginController.swift */; };
+		57A20C382742CD22002FF873 /* ConfigureController in Resources */ = {isa = PBXBuildFile; fileRef = 57A20C372742CD22002FF873 /* ConfigureController */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +31,13 @@
 		2AA6E806272B2E18004A08B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AA6E809272B2E18004A08B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AA6E80B272B2E18004A08B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5788D6C72742CEE000BB725A /* ConfigureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureController.swift; sourceTree = "<group>"; };
+		5788D6C92742CF0100BB725A /* inputContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputContainer.swift; sourceTree = "<group>"; };
+		5788D6CB2742CF2800BB725A /* switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = switcher.swift; sourceTree = "<group>"; };
+		5788D6CD2742CF3D00BB725A /* finalWaterVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalWaterVolume.swift; sourceTree = "<group>"; };
 		5798D0222739C756003D0EDF /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5798D0242739C767003D0EDF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		57A20C372742CD22002FF873 /* ConfigureController */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigureController; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 		2AA6E7F9272B2E15004A08B0 /* Slow */ = {
 			isa = PBXGroup;
 			children = (
+				57A20C372742CD22002FF873 /* ConfigureController */,
 				5798D0242739C767003D0EDF /* LoginController.swift */,
 				5798D0222739C756003D0EDF /* SignUpController.swift */,
 				2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */,
@@ -69,6 +80,10 @@
 				2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */,
 				2AA6E80B272B2E18004A08B0 /* Info.plist */,
 				2AA6E803272B2E15004A08B0 /* Slow.xcdatamodeld */,
+				5788D6C72742CEE000BB725A /* ConfigureController.swift */,
+				5788D6C92742CF0100BB725A /* inputContainer.swift */,
+				5788D6CB2742CF2800BB725A /* switcher.swift */,
+				5788D6CD2742CF3D00BB725A /* finalWaterVolume.swift */,
 			);
 			path = Slow;
 			sourceTree = "<group>";
@@ -131,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AA6E80A272B2E18004A08B0 /* LaunchScreen.storyboard in Resources */,
+				57A20C382742CD22002FF873 /* ConfigureController in Resources */,
 				2AA6E807272B2E18004A08B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,7 +159,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5798D0232739C757003D0EDF /* SignUpController.swift in Sources */,
+				5788D6C82742CEE000BB725A /* ConfigureController.swift in Sources */,
+				5788D6CE2742CF3D00BB725A /* finalWaterVolume.swift in Sources */,
+				5788D6CA2742CF0100BB725A /* inputContainer.swift in Sources */,
 				5798D0252739C767003D0EDF /* LoginController.swift in Sources */,
+				5788D6CC2742CF2800BB725A /* switcher.swift in Sources */,
 				2AA6E7FF272B2E15004A08B0 /* ViewController.swift in Sources */,
 				2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */,
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
