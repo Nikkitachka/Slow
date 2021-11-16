@@ -104,12 +104,8 @@
 		2AA6E7F9272B2E15004A08B0 /* Slow */ = {
 			isa = PBXGroup;
 			children = (
-				5752EA322742D9C50085C0FF /* ConfigureController.swift */,
-				5752EA2F2742D9C40085C0FF /* finalWaterVolume.swift */,
-				5752EA2E2742D9C40085C0FF /* inputContainer.swift */,
-				5752EA2D2742D9C40085C0FF /* LoginController.swift */,
-				5752EA302742D9C40085C0FF /* SignUpController.swift */,
-				5752EA312742D9C40085C0FF /* switcher.swift */,
+				57323BD927442D2F00271CF4 /* Login and Sign Up */,
+				57323BD827442CF100271CF4 /* ConfigureController */,
 				2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */,
 				2AA6E7FC272B2E15004A08B0 /* SceneDelegate.swift */,
 				2AA6E7FE272B2E15004A08B0 /* ViewController.swift */,
@@ -134,6 +130,26 @@
 				2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		57323BD827442CF100271CF4 /* ConfigureController */ = {
+			isa = PBXGroup;
+			children = (
+				5752EA322742D9C50085C0FF /* ConfigureController.swift */,
+				5752EA2F2742D9C40085C0FF /* finalWaterVolume.swift */,
+				5752EA2E2742D9C40085C0FF /* inputContainer.swift */,
+				5752EA312742D9C40085C0FF /* switcher.swift */,
+			);
+			path = ConfigureController;
+			sourceTree = "<group>";
+		};
+		57323BD927442D2F00271CF4 /* Login and Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				5752EA2D2742D9C40085C0FF /* LoginController.swift */,
+				5752EA302742D9C40085C0FF /* SignUpController.swift */,
+			);
+			path = "Login and Sign Up";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

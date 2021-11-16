@@ -37,6 +37,12 @@ class MainViewController: UITabBarController {
         
     }
     
+    //Go to SignUpController at start
+    override func viewDidAppear(_ animated: Bool) {
+        let nextViewController = UINavigationController(rootViewController: SignUpController())
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
     
     
     

@@ -1,5 +1,5 @@
 //
-//  LoginControl.swift
+//  SignUpController.swift
 //  loginScreen
 //
 //  Created by Игорь Багдасарян on 03.11.2021.
@@ -7,7 +7,22 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class SignUpController: UIViewController {
+    
+    @objc
+    func goToLoginController() {
+        navigationController?.pushViewController(LoginController(), animated: true)
+    }
+    
+    @objc
+    func goToConfigureController() {
+        navigationController?.pushViewController(ConfigureController(), animated: true)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -61,17 +76,34 @@ class LoginController: UIViewController {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Зарегистрироваться", for: .normal)
         button.backgroundColor = UIColor(red: 168/255, green: 242/255, blue: 245/255, alpha: 1)
         button.layer.cornerRadius = 12
         if let titleLabel = button.titleLabel {titleLabel.font = UIFont.systemFont(ofSize: 24)}
         button.setTitleColor(UIColor(white: 0, alpha: 1), for: .normal)
         button.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(goToConfigureController), for: .touchUpInside)
+        
         return button
     }()
     
-    
+    let accExistsButton: UIButton = {
+        let button = UIButton(type: .system)
+        let yourAttributes: [NSAttributedString.Key: Any] = [
+              .font: UIFont.systemFont(ofSize: 24),
+              .foregroundColor: UIColor.blue,
+              .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+                string: "Есть аккаунт",
+                attributes: yourAttributes
+        )
+        button.setAttributedTitle(attributeString, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToLoginController), for: .touchUpInside)
+        return button
+    }()
     
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -101,18 +133,15 @@ class LoginController: UIViewController {
         ])
         
         setupInputFields()
-//        view.addSubview(accExistsButton)
-//
-//        NSLayoutConstraint.activate([
-//            accExistsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            accExistsButton.bottomAnchor.constraint(equalTo: .bottomAnchor, constant: -200)
-//        ])
-//
+        
+        //keyboard hide
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     
     fileprivate func setupInputFields() {
-        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, accExistsButton])
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
@@ -125,8 +154,9 @@ class LoginController: UIViewController {
             stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 60),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40),
-            stackView.heightAnchor.constraint(equalToConstant: 200)
+            stackView.heightAnchor.constraint(equalToConstant: 265)
             ])
 
     }
 }
+

@@ -100,7 +100,7 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
 
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         self.view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 244, green: 244, blue: 244, alpha: 1))
-        SummaryLabel.text = "Жопа какает"
+        SummaryLabel.text = "articles"
         self.navigationItem.titleView = SummaryLabel
         
         self.navigationController?.navigationBar.backgroundColor = .white

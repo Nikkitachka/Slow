@@ -11,7 +11,13 @@ class ConfigureController: UIViewController {
     
     @objc
     func goToMainViewController() {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        //self.navigationController?.dismiss(animated: true)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     let ageInput: inputContainer = {
@@ -36,7 +42,7 @@ class ConfigureController: UIViewController {
         centeredParagraphStyle.alignment = .center
         inp.textField.isHidden = true
         inp.translatesAutoresizingMaskIntoConstraints = false
-        inp.label.text = "Рост"
+        inp.label.text = "Пол"
         inp.textField.attributedPlaceholder = NSAttributedString(
             string: "175",
             attributes: [.paragraphStyle: centeredParagraphStyle]
@@ -102,7 +108,11 @@ class ConfigureController: UIViewController {
 
         setupInputFields()
         view.addSubview(nextButton)
+        self.title = "Configure"
         
+        //keyboard hide
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
     }
     
@@ -120,7 +130,7 @@ class ConfigureController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
             stackView.heightAnchor.constraint(equalToConstant: 330),
