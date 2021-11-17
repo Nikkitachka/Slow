@@ -13,13 +13,13 @@ class CupCollectionViewCell: UICollectionViewCell {
     var closeFlag : Bool = false
     
     let closeImageView:UIImageView = {
-        let closeImage = UIImage(named: "xmark.png")
+        let closeImage = UIImage(named: "xmark.png")?.withAlignmentRectInsets(UIEdgeInsets(top: -2, left: -2, bottom: -2, right: -2))
         let imageView = UIImageView(image: closeImage)
         imageView.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 0.5)
         imageView.layer.cornerRadius = 10
         return imageView
     }()
-    let plusImage = UIImage(named: "+mark.png")
+    let plusImage = UIImage(named: "+mark.png")?.withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
     
     var image = UIImageView(image: UIImage(named: "defaultcup.png"))
     let back: UIView = {
@@ -65,7 +65,10 @@ class CupCollectionViewCell: UICollectionViewCell {
 
     func defaultCell(){
         back.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-        image.image = ( UIImage(named: "defaultcup.png"))
+//        image.image = ( UIImage(named: "defaultcup.png"))
+        
+        image.contentMode = .scaleAspectFit
+        image.image = UIImage(named: "defaultcup.png")
         closeImageView.isHidden = false
     }
     func cellForAdd(){

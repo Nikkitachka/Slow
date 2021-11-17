@@ -15,7 +15,7 @@ class LevelLabelCell: UICollectionViewCell {
         let label = UILabel()
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = -1
+        label.numberOfLines = 4
         label.layer.cornerRadius = 13
         label.clipsToBounds = true;
         label.font = .boldSystemFont(ofSize: 22)
@@ -33,8 +33,8 @@ class LevelLabelCell: UICollectionViewCell {
         [
 
             contentLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            contentLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-         contentLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            contentLabel.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 0),
+         contentLabel.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -16),
          contentLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
     ]
         NSLayoutConstraint.activate(constraints)

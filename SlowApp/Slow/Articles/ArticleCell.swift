@@ -17,9 +17,9 @@ class ArticleCell: UICollectionViewCell {
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = -1
-//        label.layer.cornerRadius = 13
+
         label.clipsToBounds = true;
-        label.font = .boldSystemFont(ofSize: 22)
+        label.font = .italicSystemFont(ofSize: 22)
         label.textAlignment = .center
         return label
 
@@ -29,10 +29,10 @@ class ArticleCell: UICollectionViewCell {
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = -1
-//        label.layer.cornerRadius = 13
+
         label.clipsToBounds = true;
-        label.font = .boldSystemFont(ofSize: 12)
-        label.textAlignment = .center
+        label.font = .italicSystemFont(ofSize: 12)
+        label.textAlignment = .left
         
         return label
         
@@ -40,10 +40,10 @@ class ArticleCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .yellow
-        self.layer.cornerRadius = 13
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         
+        self.backgroundColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         self.addSubview(imageView)
         self.addSubview(headerLabel)
         self.addSubview(linkLabel)
@@ -75,11 +75,12 @@ class ArticleCell: UICollectionViewCell {
         
     }
     func setImage(image:UIImage?){
+        
         imageView.image = image
     }
     func setTexts(link:String,header:String){
-        linkLabel.text = link
-        headerLabel.text = header
+        linkLabel.text = " 🔗" + link
+        headerLabel.text = "→" + header
         
     }
     
@@ -88,8 +89,8 @@ class ArticleCell: UICollectionViewCell {
     }
     
 
-    /*
-    // MARK: - Жопа какает
-    */
+    
+    
+    
 
 }

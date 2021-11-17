@@ -13,7 +13,7 @@ class ProfileImageCell: UICollectionViewCell {
     var profileImageView = UIImageView()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .yellow
+        self.backgroundColor = .clear
         profileImageView.image = profileImage
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false

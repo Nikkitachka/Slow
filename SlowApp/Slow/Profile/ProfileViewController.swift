@@ -28,9 +28,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             case 0:
                 return CGSize(width: width, height: width/1.5)
             case 1:
-                return CGSize(width: width, height: width/3)
+                return CGSize(width: width, height: width/2)
             case 2:
-                return CGSize(width: width, height: width)
+                return CGSize(width: width, height: width/1.5)
             case 3:
                 return CGSize(width: width, height: width/3)
 //            case 4:
@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             return cell
         } else if indexPath[1] == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
-            cell.setText( text: "Уровень \(level) \n Это означает, что ваша максимальная серия недель — \(level)")
+            cell.setText( text: "Уровень \(level) \n Это означает, что ваша\n максимальная серия\n недель — \(level)")
             
             return cell
         } else if indexPath[1] == 2 {
@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     let allItems: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let width = UIScreen.main.bounds.width
 //        layout.itemSize = CGSize(width:width/2, height: width/2)
         layout.minimumInteritemSpacing = 0
@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.titleView = SummaryLabel
         self.navigationController?.navigationBar.backgroundColor = .white
         view.addSubview(allItems)
-        allItems.backgroundColor  = .blue
+        allItems.backgroundColor  = .clear
         let allItems_constraints =
         [ allItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
           allItems.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),

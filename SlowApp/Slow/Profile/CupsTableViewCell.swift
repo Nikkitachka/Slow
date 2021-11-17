@@ -9,9 +9,16 @@ import UIKit
 
 class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var numbers = 15
+    let cups = [
+        UIImage(named: "blood"),
+        UIImage(named: "beer"),
+        UIImage(named: "classic"),
+        UIImage(named: "rose"),
+        UIImage(named: "noire"),
+        UIImage(named: "default")
+    ]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        numbers
+        cups.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -27,7 +34,15 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         1
     }
     
-    
+    let cupsLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Доступные стаканы"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 22)
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -36,7 +51,7 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
         
-        cell.defaultCell()
+        cell.image.image = cups[indexPath[1]]
         cell.closeImageView.isHidden = true
 
         return cell
@@ -72,12 +87,18 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         super.init(frame: frame)
         allItems.dataSource = self
         allItems.delegate = self
+        allItems.layer.cornerRadius = 13
+        self.addSubview(cupsLabel)
         self.addSubview(allItems)
-        allItems.backgroundColor  = .brown
+        self.layer.cornerRadius = 13
+        self.backgroundColor  = .white
         allItems.isScrollEnabled = false
         let constraint = [
+            cupsLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
+            cupsLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            cupsLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
             allItems.leftAnchor.constraint(equalTo: self.leftAnchor),
-            allItems.topAnchor.constraint(equalTo: self.topAnchor),
+            allItems.topAnchor.constraint(equalTo: cupsLabel.bottomAnchor),
             allItems.rightAnchor.constraint(equalTo: self.rightAnchor),
             allItems.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ]
