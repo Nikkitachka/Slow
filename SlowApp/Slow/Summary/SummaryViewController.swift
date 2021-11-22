@@ -118,8 +118,20 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let pickerController = CalendarPickerViewController(
+//            baseDate: Date(),
+//          selectedDateChanged: { [weak self] date in
+//          guard let self = self else { return }
+//
+//          })
+
+//        present(pickerController, animated: true, completion: nil)
+//        view.addSubview(pickerController)
         CurrentCuplabel.text = "Выпито: \(currentNumberOfCupsOfWater)/\(goalOfNumberOfCupsOfWater)"
         CurrentCuplabel.textAlignment = .natural
         CurrentCuplabel.font = .boldSystemFont(ofSize: 24)

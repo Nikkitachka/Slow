@@ -12,8 +12,8 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let svc = UINavigationController(rootViewController: SummaryViewController())
+  
         svc.navigationBar.backgroundColor  = .white
         
         

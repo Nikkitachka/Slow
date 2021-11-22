@@ -15,6 +15,18 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         UIImage(named: "classic"),
         UIImage(named: "rose"),
         UIImage(named: "noire"),
+        UIImage(named: "default"),
+        UIImage(named: "blood"),
+        UIImage(named: "beer"),
+        UIImage(named: "classic"),
+        UIImage(named: "rose"),
+        UIImage(named: "noire"),
+        UIImage(named: "default"),
+        UIImage(named: "blood"),
+        UIImage(named: "beer"),
+        UIImage(named: "classic"),
+        UIImage(named: "rose"),
+        UIImage(named: "noire"),
         UIImage(named: "default")
     ]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,7 +104,7 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         self.addSubview(allItems)
         self.layer.cornerRadius = 13
         self.backgroundColor  = .white
-        allItems.isScrollEnabled = false
+        allItems.isScrollEnabled = true
         let constraint = [
             cupsLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
             cupsLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
