@@ -106,7 +106,7 @@ class CalendarPickerHeaderView: UIView {
     layer.cornerRadius = 15
 
     addSubview(monthLabel)
-    addSubview(closeButton)
+//    addSubview(closeButton)
     addSubview(dayOfWeekStackView)
     addSubview(separatorView)
 
@@ -163,12 +163,12 @@ class CalendarPickerHeaderView: UIView {
     NSLayoutConstraint.activate([
       monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
       monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-      monthLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: 5),
+      monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5),
 
-      closeButton.centerYAnchor.constraint(equalTo: monthLabel.centerYAnchor),
-      closeButton.heightAnchor.constraint(equalToConstant: 28),
-      closeButton.widthAnchor.constraint(equalToConstant: 28),
-      closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+//      closeButton.centerYAnchor.constraint(equalTo: monthLabel.centerYAnchor),
+//      closeButton.heightAnchor.constraint(equalToConstant: 28),
+//      closeButton.widthAnchor.constraint(equalToConstant: 28),
+//      closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
 
       dayOfWeekStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
       dayOfWeekStackView.trailingAnchor.constraint(equalTo: trailingAnchor),

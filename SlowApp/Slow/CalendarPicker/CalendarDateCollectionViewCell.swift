@@ -118,7 +118,7 @@ class CalendarDateCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Appearance
-private extension CalendarDateCollectionViewCell {
+extension CalendarDateCollectionViewCell {
   // 1
   func updateSelectionStatus() {
     guard let day = day else { return }

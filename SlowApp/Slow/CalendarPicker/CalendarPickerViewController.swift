@@ -34,14 +34,8 @@ import UIKit
 
 class CalendarPickerViewController: UIViewController {
   // MARK: Views
-  private lazy var dimmedBackgroundView: UIView = {
-    let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-    return view
-  }()
-
-  private lazy var collectionView: UICollectionView = {
+  
+  private var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.minimumLineSpacing = 0
     layout.minimumInteritemSpacing = 0
@@ -57,7 +51,7 @@ class CalendarPickerViewController: UIViewController {
 
     self.dismiss(animated: true)
   }
-
+    
   private lazy var footerView = CalendarPickerFooterView(
     didTapLastMonthCompletionHandler: { [weak self] in
     guard let self = self else { return }
@@ -128,33 +122,28 @@ class CalendarPickerViewController: UIViewController {
     super.viewDidLoad()
     collectionView.backgroundColor = .systemGroupedBackground
 
-    view.addSubview(dimmedBackgroundView)
+    
     view.addSubview(collectionView)
     view.addSubview(headerView)
     view.addSubview(footerView)
 
     var constraints = [
-      dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-      dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        //1
+        collectionView.leadingAnchor.constraint(
+          equalTo: view.readableContentGuide.leadingAnchor),
+        collectionView.trailingAnchor.constraint(
+          equalTo: view.readableContentGuide.trailingAnchor),
+        //2
+        collectionView.centerYAnchor.constraint(
+          equalTo: view.centerYAnchor,
+          constant: 10),
+        //3
+        collectionView.heightAnchor.constraint(
+          equalTo: view.heightAnchor,
+          multiplier: 0.5)
     ]
 
-    constraints.append(contentsOf: [
-      //1
-      collectionView.leadingAnchor.constraint(
-        equalTo: view.readableContentGuide.leadingAnchor),
-      collectionView.trailingAnchor.constraint(
-        equalTo: view.readableContentGuide.trailingAnchor),
-      //2
-      collectionView.centerYAnchor.constraint(
-        equalTo: view.centerYAnchor,
-        constant: 10),
-      //3
-      collectionView.heightAnchor.constraint(
-        equalTo: view.heightAnchor,
-        multiplier: 0.5)
-    ])
+  
 
     constraints.append(contentsOf: [
       headerView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
@@ -315,17 +304,37 @@ extension CalendarPickerViewController: UICollectionViewDataSource {
     days.count
   }
 
+    
+    
+//    func updateSelectionStatus() {
+//
+//    }
+
+    // 2
+//    var isSmallScreenSize: Bool {
+//
+//    }
+
+    // 3
+//    func applySelectedStyle() {
+//
+//    }
+
+    // 4
+//    func applyDefaultStyle(isWithinDisplayedMonth: Bool) {
+//
+//    }
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let day = days[indexPath.row]
-
+    
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: CalendarDateCollectionViewCell.reuseIdentifier,
       for: indexPath) as! CalendarDateCollectionViewCell
     // swiftlint:disable:previous force_cast
-
+      
     cell.day = day
     return cell
   }
@@ -338,8 +347,17 @@ extension CalendarPickerViewController: UICollectionViewDelegateFlowLayout {
     didSelectItemAt indexPath: IndexPath
   ) {
     let day = days[indexPath.row]
-    selectedDateChanged(day.date)
-    dismiss(animated: true, completion: nil)
+      if let cell1 = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: { d in d.day?.date != day.date}) {
+          cell1.applyDefaultStyle(isWithinDisplayedMonth:false)
+      }
+//    selectedDateChanged(day.date)
+      if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
+          cell.applySelectedStyle()
+          
+          
+          }
+      
+//    dismiss(animated: true, completion: nil)
   }
 
   func collectionView(

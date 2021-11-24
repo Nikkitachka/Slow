@@ -12,7 +12,7 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let svc = UINavigationController(rootViewController: SummaryViewController())
+        let svc = UINavigationController(rootViewController: CalendarPickerViewController(baseDate: Date(), selectedDateChanged: { _ in } ))
   
         svc.navigationBar.backgroundColor  = .white
         
