@@ -33,7 +33,7 @@
 import UIKit
 
 class CalendarDateCollectionViewCell: UICollectionViewCell {
-  private lazy var selectionBackgroundView: UIView = {
+   lazy var selectionBackgroundView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.clipsToBounds = true

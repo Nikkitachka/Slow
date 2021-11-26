@@ -346,18 +346,21 @@ extension CalendarPickerViewController: UICollectionViewDelegateFlowLayout {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    let day = days[indexPath.row]
-      if let cell1 = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: { d in d.day?.date != day.date}) {
-          cell1.applyDefaultStyle(isWithinDisplayedMonth:false)
+
+      
+      
+      if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.selectionBackgroundView.isHidden == false}){
+          
+          defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
+
       }
-//    selectedDateChanged(day.date)
+      
+      
+
       if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
           cell.applySelectedStyle()
-          
-          
-          }
-      
-//    dismiss(animated: true, completion: nil)
+      }
+
   }
 
   func collectionView(
