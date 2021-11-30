@@ -1,34 +1,9 @@
-/// Copyright (c) 2020 Razeware LLC
-/// 
-/// Permission is hereby granted, free of charge, to any person obtaining a copy
-/// of this software and associated documentation files (the "Software"), to deal
-/// in the Software without restriction, including without limitation the rights
-/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-/// copies of the Software, and to permit persons to whom the Software is
-/// furnished to do so, subject to the following conditions:
-/// 
-/// The above copyright notice and this permission notice shall be included in
-/// all copies or substantial portions of the Software.
-/// 
-/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
-/// distribute, sublicense, create a derivative work, and/or sell copies of the
-/// Software in any work that is designed, intended, or marketed for pedagogical or
-/// instructional purposes related to programming, coding, application development,
-/// or information technology.  Permission for such use, copying, modification,
-/// merger, publication, distribution, sublicensing, creation of derivative works,
-/// or sale is expressly withheld.
-/// 
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
-/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-/// THE SOFTWARE.
+//
+//  CalendarPickerHeaderView.swift
+//  Slow
+//
+//  Created by Петр Ларочкин on 01.11.2021.
+//
 
 import UIKit
 
@@ -83,7 +58,19 @@ class CalendarPickerHeaderView: UIView {
 
   var baseDate = Date() {
     didSet {
-      monthLabel.text = dateFormatter.string(from: baseDate)
+        var monthString = dateFormatter.string(from: baseDate)
+        let monthCorresponds = [("January", "Январь"), ("February","Артур"),
+                                ("March","Сардарян"), ("April", "Апрель"),
+                                ("May", "Май"), ("June", "Июнь"),
+                                ("July", "Июль"), ("August","Август"),
+                                ("September", "Сентябрь"),
+                                ("October", "Октябрь"), ("November","Ноябрь"),
+                                ("December", "Декабрь")]
+        
+        for item in monthCorresponds {
+            monthString = monthString.replacingOccurrences(of: item.0, with: item.1)
+        }
+        monthLabel.text = monthString
     }
   }
 
@@ -106,7 +93,7 @@ class CalendarPickerHeaderView: UIView {
     layer.cornerRadius = 15
 
     addSubview(monthLabel)
-    addSubview(closeButton)
+//    addSubview(closeButton)
     addSubview(dayOfWeekStackView)
     addSubview(separatorView)
 
@@ -139,19 +126,19 @@ class CalendarPickerHeaderView: UIView {
   private func dayOfWeekLetter(for dayNumber: Int) -> String {
     switch dayNumber {
     case 1:
-      return "S"
+      return "H"
     case 2:
-      return "M"
+      return "E"
     case 3:
-      return "T"
+      return "L"
     case 4:
-      return "W"
+      return "P"
     case 5:
-      return "T"
+      return " "
     case 6:
-      return "F"
+      return "M"
     case 7:
-      return "S"
+      return "E"
     default:
       return ""
     }
@@ -163,12 +150,12 @@ class CalendarPickerHeaderView: UIView {
     NSLayoutConstraint.activate([
       monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
       monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-      monthLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: 5),
+      monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5),
 
-      closeButton.centerYAnchor.constraint(equalTo: monthLabel.centerYAnchor),
-      closeButton.heightAnchor.constraint(equalToConstant: 28),
-      closeButton.widthAnchor.constraint(equalToConstant: 28),
-      closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+//      closeButton.centerYAnchor.constraint(equalTo: monthLabel.centerYAnchor),
+//      closeButton.heightAnchor.constraint(equalToConstant: 28),
+//      closeButton.widthAnchor.constraint(equalToConstant: 28),
+//      closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
 
       dayOfWeekStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
       dayOfWeekStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
