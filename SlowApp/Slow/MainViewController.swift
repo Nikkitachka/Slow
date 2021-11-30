@@ -12,26 +12,27 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let svc = UINavigationController(rootViewController: CalendarPickerViewController(baseDate: Date(), selectedDateChanged: { _ in } ))
-  
+//        let svc = UINavigationController(rootViewController: CalendarPickerViewController(baseDate: Date(), selectedDateChanged: { _ in } ))
+        let svc = UINavigationController(rootViewController: SummaryViewController{ _ in })
         svc.navigationBar.backgroundColor  = .white
         
         
 
-        let summary = UITabBarItem()
-        summary.title = "Summary"
+        
+        let summary = UITabBarItem(title: "Обзор", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person"))
         svc.tabBarItem = summary
         self.navigationItem.titleView?.isHidden = true
-//        вставьте свое
-//        item.image = UIImage(named: "home_icon")
-        
-        
+
         
         
         
         let pvc = UINavigationController(rootViewController: ProfileViewController())
-        let profile = UITabBarItem()
-        profile.title = "Profile"
+        let profile = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person"))
+        pvc.tabBarItem = profile
+        
+//        let pvc = UINavigationController(rootViewController: ProfileViewController())
+//        let profile = UITabBarItem()
+//        profile.title = "Profile"
         
         pvc.tabBarItem = profile
         self.viewControllers = [svc,pvc]

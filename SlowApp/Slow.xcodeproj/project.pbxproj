@@ -93,6 +93,10 @@
 		2A491C6A273538E000AC2037 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */,
+				2AA5DDD5274C2CAD000C0AF6 /* CalendarPickerViewController.swift */,
+				2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */,
+				2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */,
 				2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */,
 				2A70F5972730537100D88D37 /* SummaryViewController.swift */,
 			);
@@ -102,10 +106,6 @@
 		2AA5DDD3274C2CAD000C0AF6 /* CalendarPicker */ = {
 			isa = PBXGroup;
 			children = (
-				2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */,
-				2AA5DDD5274C2CAD000C0AF6 /* CalendarPickerViewController.swift */,
-				2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */,
-				2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */,
 			);
 			path = CalendarPicker;
 			sourceTree = "<group>";

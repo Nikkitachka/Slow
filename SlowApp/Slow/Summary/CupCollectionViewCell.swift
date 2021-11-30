@@ -19,7 +19,7 @@ class CupCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         return imageView
     }()
-    let plusImage = UIImage(named: "+mark.png")?.withAlignmentRectInsets(UIEdgeInsets(top: -5, left: -5, bottom: -5, right: -5))
+    let plusImage = UIImage(named: "+mark.png")?.withAlignmentRectInsets(UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16))
     
     var image = UIImageView(image: UIImage(named: "defaultcup.png"))
     let back: UIView = {

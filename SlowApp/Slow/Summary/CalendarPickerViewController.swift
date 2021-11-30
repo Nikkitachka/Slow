@@ -167,6 +167,8 @@ class CalendarPickerViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.delegate = self
     headerView.baseDate = baseDate
+      
+      
   }
 
   override func viewWillTransition(
@@ -304,26 +306,6 @@ extension CalendarPickerViewController: UICollectionViewDataSource {
     days.count
   }
 
-    
-    
-//    func updateSelectionStatus() {
-//
-//    }
-
-    // 2
-//    var isSmallScreenSize: Bool {
-//
-//    }
-
-    // 3
-//    func applySelectedStyle() {
-//
-//    }
-
-    // 4
-//    func applyDefaultStyle(isWithinDisplayedMonth: Bool) {
-//
-//    }
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
@@ -347,16 +329,9 @@ extension CalendarPickerViewController: UICollectionViewDelegateFlowLayout {
     didSelectItemAt indexPath: IndexPath
   ) {
 
-      
-      
       if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.selectionBackgroundView.isHidden == false}){
-          
           defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
-
       }
-      
-      
-
       if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
           cell.applySelectedStyle()
       }
