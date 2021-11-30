@@ -2,9 +2,8 @@
 //  CupCollectionViewCell.swift
 //  Slow
 //
-//  Created by Петр Ларочкин on 05.11.2021.
+//  Created by Петр Ларочкин on 01.11.2021.
 //
-
 import UIKit
 
 class CupCollectionViewCell: UICollectionViewCell {

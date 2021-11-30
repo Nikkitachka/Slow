@@ -16,7 +16,6 @@
 		2A70F5962730515600D88D37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5952730515600D88D37 /* MainViewController.swift */; };
 		2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5972730537100D88D37 /* SummaryViewController.swift */; };
 		2AA5DDDC274C2CAD000C0AF6 /* CalendarPickerFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */; };
-		2AA5DDDD274C2CAD000C0AF6 /* CalendarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD5274C2CAD000C0AF6 /* CalendarPickerViewController.swift */; };
 		2AA5DDDE274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */; };
 		2AA5DDDF274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */; };
 		2AA5DDE0274C2CAD000C0AF6 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD9274C2CAD000C0AF6 /* ChecklistItem.swift */; };
@@ -47,7 +46,6 @@
 		2A70F5952730515600D88D37 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A70F5972730537100D88D37 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerFooterView.swift; sourceTree = "<group>"; };
-		2AA5DDD5274C2CAD000C0AF6 /* CalendarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerViewController.swift; sourceTree = "<group>"; };
 		2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerHeaderView.swift; sourceTree = "<group>"; };
 		2AA5DDD9274C2CAD000C0AF6 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */,
-				2AA5DDD5274C2CAD000C0AF6 /* CalendarPickerViewController.swift */,
 				2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */,
 				2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */,
 				2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */,
@@ -278,7 +275,6 @@
 				2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */,
 				2AA5DDDE274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift in Sources */,
 				2AA5DDE1274C2CAD000C0AF6 /* Day.swift in Sources */,
-				2AA5DDDD274C2CAD000C0AF6 /* CalendarPickerViewController.swift in Sources */,
 				2AEBB67E2739B0010014443B /* ProfileViewController.swift in Sources */,
 				2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */,
 				2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */,
