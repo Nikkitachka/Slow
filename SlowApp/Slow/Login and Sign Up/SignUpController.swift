@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpController: UIViewController {
     
@@ -16,7 +17,26 @@ class SignUpController: UIViewController {
     
     @objc
     func goToConfigureController() {
-        navigationController?.pushViewController(ConfigureController(), animated: true)
+        
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            debugPrint(email)
+            debugPrint(password)
+            if email.contains("@") && password.count >= 6 {
+                Auth.auth().createUser(withEmail: email, password: password, completion: {
+                    (user: AuthDataResult?, error: Error?) in
+                        if let err = error {
+                            debugPrint("Failed to create user \(err)")
+                            return
+                        } else {
+                            debugPrint("Successfully created user: \(String(describing: user?.user.uid ?? "" ))")
+                            self.navigationController?.pushViewController(ConfigureController(), animated: true)
+                        }
+                    
+                    
+                })
+            }
+        }
+
     }
     
     @objc func dismissKeyboard() {
@@ -43,7 +63,8 @@ class SignUpController: UIViewController {
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         tf.font = UIFont.systemFont(ofSize: 24)
-        
+        tf.keyboardType = .emailAddress
+        tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         
@@ -51,6 +72,7 @@ class SignUpController: UIViewController {
             string: "почта@почта.ру",
             attributes: [.paragraphStyle: centeredParagraphStyle]
         )
+        
         
         return tf
     }()
@@ -62,7 +84,7 @@ class SignUpController: UIViewController {
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         tf.font = UIFont.systemFont(ofSize: 24)
-        
+        tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         

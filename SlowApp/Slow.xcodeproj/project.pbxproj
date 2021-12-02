@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043ADC124CA6C0DB5D2184B3 /* Pods_Slow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7B191FF48FEAC4E0551C66 /* Pods_Slow.framework */; };
 		2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD8872741760D00E03446 /* ProfileImageCell.swift */; };
 		2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD889274199CB00E03446 /* LevelLabelCell.swift */; };
 		2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */; };
@@ -15,6 +16,7 @@
 		2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */; };
 		2A70F5962730515600D88D37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5952730515600D88D37 /* MainViewController.swift */; };
 		2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70F5972730537100D88D37 /* SummaryViewController.swift */; };
+		2A75B9A127594FFF00815A2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A75B9A027594FFF00815A2A /* GoogleService-Info.plist */; };
 		2AA5DDDC274C2CAD000C0AF6 /* CalendarPickerFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */; };
 		2AA5DDDE274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */; };
 		2AA5DDDF274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */; };
@@ -37,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2293FAF638A884E87E7EF578 /* Pods-Slow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slow.release.xcconfig"; path = "Target Support Files/Pods-Slow/Pods-Slow.release.xcconfig"; sourceTree = "<group>"; };
 		2A0BD8872741760D00E03446 /* ProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
 		2A0BD889274199CB00E03446 /* LevelLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelLabelCell.swift; sourceTree = "<group>"; };
 		2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupsTableViewCell.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A70F5952730515600D88D37 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A70F5972730537100D88D37 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		2A75B9A027594FFF00815A2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2AA5DDD4274C2CAD000C0AF6 /* CalendarPickerFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerFooterView.swift; sourceTree = "<group>"; };
 		2AA5DDD6274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		2AA5DDD7274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerHeaderView.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		5752EA302742D9C40085C0FF /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5752EA312742D9C40085C0FF /* switcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = switcher.swift; sourceTree = "<group>"; };
 		5752EA322742D9C50085C0FF /* ConfigureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureController.swift; sourceTree = "<group>"; };
+		73D864A6E3E2F3B4B306B47C /* Pods-Slow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slow.debug.xcconfig"; path = "Target Support Files/Pods-Slow/Pods-Slow.debug.xcconfig"; sourceTree = "<group>"; };
+		AC7B191FF48FEAC4E0551C66 /* Pods_Slow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043ADC124CA6C0DB5D2184B3 /* Pods_Slow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +129,8 @@
 			children = (
 				2AA6E7F9272B2E15004A08B0 /* Slow */,
 				2AA6E7F8272B2E15004A08B0 /* Products */,
+				F4A8F65A177246F330204D6B /* Pods */,
+				3F663E6D392C58F172001451 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				2AA5DDD3274C2CAD000C0AF6 /* CalendarPicker */,
-				2AA5DDD8274C2CAD000C0AF6 /* Models */,
 				57323BD927442D2F00271CF4 /* Login and Sign Up */,
 				57323BD827442CF100271CF4 /* ConfigureController */,
 				2AA6E7FA272B2E15004A08B0 /* AppDelegate.swift */,
@@ -147,9 +155,11 @@
 				2A0BD88F2741ACA200E03446 /* Articles */,
 				2AEBB67F2739B00A0014443B /* Profile */,
 				2A491C6A273538E000AC2037 /* Summary */,
+				2AA5DDD8274C2CAD000C0AF6 /* Models */,
 				2AA6E806272B2E18004A08B0 /* Assets.xcassets */,
 				2AA6E808272B2E18004A08B0 /* LaunchScreen.storyboard */,
 				2AA6E80B272B2E18004A08B0 /* Info.plist */,
+				2A75B9A027594FFF00815A2A /* GoogleService-Info.plist */,
 				2AA6E803272B2E15004A08B0 /* Slow.xcdatamodeld */,
 			);
 			path = Slow;
@@ -164,6 +174,14 @@
 				2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		3F663E6D392C58F172001451 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC7B191FF48FEAC4E0551C66 /* Pods_Slow.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		57323BD827442CF100271CF4 /* ConfigureController */ = {
@@ -186,6 +204,15 @@
 			path = "Login and Sign Up";
 			sourceTree = "<group>";
 		};
+		F4A8F65A177246F330204D6B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73D864A6E3E2F3B4B306B47C /* Pods-Slow.debug.xcconfig */,
+				2293FAF638A884E87E7EF578 /* Pods-Slow.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AA6E80E272B2E18004A08B0 /* Build configuration list for PBXNativeTarget "Slow" */;
 			buildPhases = (
+				999DC82F2AAAD704644E7472 /* [CP] Check Pods Manifest.lock */,
 				2AA6E7F3272B2E15004A08B0 /* Sources */,
 				2AA6E7F4272B2E15004A08B0 /* Frameworks */,
 				2AA6E7F5272B2E15004A08B0 /* Resources */,
+				3A140EB938D34F5BE151E6CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,10 +274,53 @@
 			files = (
 				2AA6E80A272B2E18004A08B0 /* LaunchScreen.storyboard in Resources */,
 				2AA6E807272B2E18004A08B0 /* Assets.xcassets in Resources */,
+				2A75B9A127594FFF00815A2A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A140EB938D34F5BE151E6CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Slow/Pods-Slow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Slow/Pods-Slow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Slow/Pods-Slow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		999DC82F2AAAD704644E7472 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2AA6E7F3272B2E15004A08B0 /* Sources */ = {
@@ -415,6 +487,7 @@
 		};
 		2AA6E80F272B2E18004A08B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73D864A6E3E2F3B4B306B47C /* Pods-Slow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -433,6 +506,7 @@
 		};
 		2AA6E810272B2E18004A08B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2293FAF638A884E87E7EF578 /* Pods-Slow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
