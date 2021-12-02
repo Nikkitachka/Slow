@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginController: UIViewController {
     
@@ -17,7 +18,27 @@ class LoginController: UIViewController {
     @objc
     func goToMainViewController() {
         //self.navigationController?.dismiss(animated: true)
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            debugPrint(email)
+            debugPrint(password)
+            if email.contains("@") && password.count >= 6 {
+                
+                Auth.auth().signIn(withEmail: email, password: password, completion: {
+                    (user: AuthDataResult?, error: Error?) in
+                        if let err = error {
+                            debugPrint("Failed to create user \(err)")
+                            return
+                        } else {
+                            debugPrint("Successfully get user: \(String(describing: user?.user.uid ?? "" ))")
+                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        }
+                    
+                    
+                })
+            }
+        }
+        
     }
     
     let plusPhotoButton: UIButton = {
@@ -39,7 +60,8 @@ class LoginController: UIViewController {
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         tf.font = UIFont.systemFont(ofSize: 24)
-        
+        tf.keyboardType = .emailAddress
+        tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         
@@ -58,7 +80,7 @@ class LoginController: UIViewController {
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(white: 0, alpha: 1).cgColor
         tf.font = UIFont.systemFont(ofSize: 24)
-        
+        tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         

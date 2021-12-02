@@ -11,8 +11,8 @@ import UIKit
 
 class SummaryViewController: UIViewController {
     // MARK: MyCode
-    var currentCountOfCups: Int = 5
-    var goalCountOfCups: Int = 10
+    private var currentCountOfCups: Int = 5
+    private var goalCountOfCups: Int = 10
     private lazy var headingView : UILabel = {
         let label = UILabel()
         label.text = "Обзор"

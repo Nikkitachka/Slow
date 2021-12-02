@@ -19,7 +19,7 @@ class MainViewController: UITabBarController {
         
 
         
-        let summary = UITabBarItem(title: "Обзор", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person"))
+        let summary = UITabBarItem(title: "Обзор", image: UIImage(systemName: "calendar"), selectedImage: UIImage(systemName: "calendar"))
         svc.tabBarItem = summary
         self.navigationItem.titleView?.isHidden = true
 
