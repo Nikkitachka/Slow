@@ -31,8 +31,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 return CGSize(width: width, height: width/2)
             case 2:
                 return CGSize(width: width, height: width/1.5)
-            case 3:
-                return CGSize(width: width, height: width/3)
+//            case 3:
+//                return CGSize(width: width, height: width/3)
 //            case 4:
 //                print("Переменная равна 22")
             default:
@@ -70,16 +70,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             
                 
             return cell
-        } else if indexPath[1] == 3 {
-           
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
-            
-            cell.setText( text: "Зачем пить воду?")
-            cell.layoutIfNeeded()
-    
-            return cell
-            
-        } else {
+        }
+//        else if indexPath[1] == 3 {
+//
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
+//
+//            cell.setText( text: "Зачем пить воду?")
+//            cell.layoutIfNeeded()
+//
+//            return cell
+//
+//        }
+        else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageCell
             let width  = (view.frame.width)
             cell.profileImageView.layer.cornerRadius = width/1.5/2
@@ -93,13 +95,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath[1] == 3 {
-            
-            self.navigationController?.pushViewController(WhyNeedDrinkWaterController(), animated: true)
-        }
-        else {
-            print(indexPath)
-        }
+//        if indexPath[1] == 3 {
+//
+//            self.navigationController?.pushViewController(WhyNeedDrinkWaterController(), animated: true)
+//        }
+//        else {
+//            print(indexPath)
+//        }
     }
    
     
