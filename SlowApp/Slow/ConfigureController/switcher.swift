@@ -21,7 +21,7 @@ class sexView: UIView {
         label.text = "М"
         return label
     }()
-    
+
     let fLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,8 +31,9 @@ class sexView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.frame = CGRect(x: 0, y: 0, width: 120, height: 50)
         
+        self.isUserInteractionEnabled = true
+        self.frame = CGRect(x: 0, y: 0, width: 120, height: 50)
         self.addSubview(fLabel)
         self.addSubview(sexSwitch)
         self.addSubview(mLabel)

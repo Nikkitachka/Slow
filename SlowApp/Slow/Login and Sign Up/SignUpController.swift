@@ -50,6 +50,7 @@ class SignUpController: UIViewController {
         button.imageView?.contentMode = .scaleAspectFill
         button.imageView?.layer.cornerRadius = (imageLogo?.size.width ?? 175) / 2
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = false
         return button
     }()
     
@@ -64,7 +65,8 @@ class SignUpController: UIViewController {
         tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
-        
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         tf.attributedPlaceholder = NSAttributedString(
             string: "почта@почта.ру",
             attributes: [.paragraphStyle: centeredParagraphStyle]
@@ -84,7 +86,8 @@ class SignUpController: UIViewController {
         tf.textAlignment = .center
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
-        
+        // Тут в эмуляторе вылазит прдложенный пароль, который нельзя отменить :(
+        //tf.isSecureTextEntry = true
         tf.attributedPlaceholder = NSAttributedString(
             string: "пароль",
             attributes: [.paragraphStyle: centeredParagraphStyle]

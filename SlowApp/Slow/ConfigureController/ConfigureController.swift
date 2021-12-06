@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -13,7 +14,6 @@ class ConfigureController: UIViewController {
     
     private var email : String
     private let database = Database.database().reference()
-    
     
     @objc
     func goToMainViewController() {
@@ -37,9 +37,7 @@ class ConfigureController: UIViewController {
         }
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+    
     
     let ageInput: inputContainer = {
         let inp = inputContainer()
@@ -53,12 +51,12 @@ class ConfigureController: UIViewController {
             string: "20",
             attributes: [.paragraphStyle: centeredParagraphStyle]
         )
+        inp.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return inp
     }()
     
     let sexInput: inputContainer = {
         let inp = inputContainer()
-        
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         inp.textField.isHidden = true
@@ -68,7 +66,7 @@ class ConfigureController: UIViewController {
             string: "175",
             attributes: [.paragraphStyle: centeredParagraphStyle]
         )
-        
+        inp.sexSwitch.sexSwitch.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.valueChanged)
         return inp
     }()
     
@@ -84,6 +82,7 @@ class ConfigureController: UIViewController {
             string: "60",
             attributes: [.paragraphStyle: centeredParagraphStyle]
         )
+        inp.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return inp
     }()
     
@@ -99,10 +98,11 @@ class ConfigureController: UIViewController {
             string: "175",
             attributes: [.paragraphStyle: centeredParagraphStyle]
         )
+        inp.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return inp
     }()
     
-    let finalVol: finalWaterVolume = {
+    lazy var finalVol: finalWaterVolume = {
         let vol = finalWaterVolume()
         vol.translatesAutoresizingMaskIntoConstraints = false
         return vol
@@ -140,6 +140,9 @@ class ConfigureController: UIViewController {
         view.addSubview(nextButton)
         self.title = "Configure"
         
+        
+        finalVol.volumeLabel.text = ageInput.textField.text
+        
         //keyboard hide
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -152,7 +155,7 @@ class ConfigureController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = 10
         
         view.addSubview(stackView)
         view.addSubview(finalVol)
@@ -160,21 +163,39 @@ class ConfigureController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-            stackView.heightAnchor.constraint(equalToConstant: 330),
+            stackView.heightAnchor.constraint(equalToConstant: 260),
             
-            finalVol.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
+            finalVol.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
             finalVol.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
             finalVol.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-            finalVol.heightAnchor.constraint(equalToConstant: 200),
-            nextButton.topAnchor.constraint(equalTo: finalVol.bottomAnchor, constant: 12),
+            finalVol.heightAnchor.constraint(equalToConstant: 172),
+            nextButton.topAnchor.constraint(equalTo: finalVol.bottomAnchor, constant: 10),
             nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
             nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-            nextButton.heightAnchor.constraint(equalToConstant: 60)
+            nextButton.heightAnchor.constraint(equalToConstant: 48)
         ])
         finalVol.layoutIfNeeded()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // Подсчет воды и вывод в лейблы
+    @objc func textFieldDidChange() {
+        let age = (Double(ageInput.textField.text ?? "0") ?? 0) < 7 ? 50.0 : 30.0
+        let sex = sexInput.sexSwitch.sexSwitch.isOn ? 1.1 : 1
+        let weight = Double(weightInput.textField.text ?? "0") ?? 0
+        let height = Double(heightInput.textField.text ?? "0") ?? 0
+        let coefficient = (weight > 35 && height > 120) ? log(height / weight) : 1
+        let volume = age * weight * coefficient * sex
+        let glass = volume / 200
+        finalVol.volumeLabel.text = volume > 0 ? String(Int(volume)) + " мл" : "2000 ml"
+        finalVol.glassLabel.text = glass > 0 ? String(Int(round(glass))) + " стаканов" : "10 стаканов"
+
     }
     
 }

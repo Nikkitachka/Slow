@@ -17,7 +17,7 @@ class finalWaterVolume: UIView {
         return label
     }()
     
-    let volumeLabel: UILabel = {
+    var volumeLabel: UILabel = {
         let label = UILabel()
         label.text = "1500 ml"
         label.font = UIFont.boldSystemFont(ofSize: 48)
@@ -25,7 +25,7 @@ class finalWaterVolume: UIView {
         return label
     }()
     
-    let glassLabel: UILabel = {
+    var glassLabel: UILabel = {
         let label = UILabel()
         label.text = "6 стаканов"
         label.font = UIFont.boldSystemFont(ofSize: 36)
@@ -53,14 +53,14 @@ class finalWaterVolume: UIView {
         self.addSubview(volumeLabel)
         self.addSubview(glassLabel)
         NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
+            resultLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             resultLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             volumeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            volumeLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 24),
+            volumeLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 16),
             
             glassLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            glassLabel.topAnchor.constraint(equalTo: volumeLabel.bottomAnchor, constant: 6)
+            glassLabel.topAnchor.constraint(equalTo: volumeLabel.bottomAnchor, constant: 4)
         ])
     }
 }

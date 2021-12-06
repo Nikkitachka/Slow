@@ -35,6 +35,7 @@ class inputContainer: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.isUserInteractionEnabled = true
         self.addCustomView()
         self.layer.cornerRadius = 18
         self.backgroundColor = .white
@@ -61,6 +62,7 @@ class inputContainer: UIView {
             textField.widthAnchor.constraint(equalToConstant: 100),
             
             sexSwitch.widthAnchor.constraint(equalToConstant: 100),
+            sexSwitch.heightAnchor.constraint(equalToConstant: 50),
             sexSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             sexSwitch.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12)
         ])
