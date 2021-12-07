@@ -532,10 +532,17 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout {
             if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.numberLabel.textColor == .systemBlue }){
                 if defaultCell.selectionBackgroundView.isHidden {
                     defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
+                    
+                    
                 }
                 else {
                     defaultCell.numberLabel.textColor = .black
                 }
+                if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
+                    if cell.selectionBackgroundView.isHidden  {
+                    if (cell.numberLabel.textColor == .secondaryLabel){
+                        defaultCell.numberLabel.textColor = .systemBlue
+                    }}}
             }
             if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
                 if cell.selectionBackgroundView.isHidden  {
