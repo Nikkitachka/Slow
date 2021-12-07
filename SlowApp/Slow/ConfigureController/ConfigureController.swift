@@ -12,28 +12,56 @@ import FirebaseAuth
 
 class ConfigureController: UIViewController {
     
-    private var email : String
     private let database = Database.database().reference()
+    
+    private let email: String
+    private var cups: Int = 10
+    private var waterVolume: Int = 2000
     
     @objc
     func goToMainViewController() {
 
         if let age = Int(ageInput.textField.text!), let height = Float(heightInput.textField.text!), let uid = Auth.auth().currentUser?.uid   {
-            
-            let dailyWaterIntake = 1500
+        
             let sex = sexInput.sexSwitch.sexSwitch.isOn ? "Male" : "Female"
             database.child(uid).child("age").setValue(age)
             database.child(uid).child("sex").setValue(sex)
             database.child(uid).child("height").setValue(height)
-            database.child(uid).child("dailyWaterIntake").setValue(dailyWaterIntake)
+            database.child(uid).child("dailyWaterIntake").setValue(waterVolume)
+            database.child(uid).child("cups").setValue(cups)
+            
+            
+            
+            
+            database.child(uid).observe(.value, with: {snapshot in
+                if !snapshot.hasChild("history") {
+                    debugPrint("Empty History")
+//                    let dateFormatterGet = NSDateFormatter()
+//                    dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//
+//                    let dateFormatterPrint = NSDateFormatter()
+//                    dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+//
+//                    let date: NSDate? = dateFormatterGet.dateFromString("2016-02-29 12:24:26")
+//                    print(dateFormatterPrint.stringFromDate(date!))
+                    
+                    
+                    let dateFormatterPrint = DateFormatter()
+                    dateFormatterPrint.dateFormat = "ddMMyyyy"
+                    let date = dateFormatterPrint.string(from: Date())
+
+                    self.database.child(uid).child("history").setValue( [date : 0] as NSDictionary)
+
+                }
+
+            })
+                
+                
+            
             let newVc = MainViewController()
             newVc.modalPresentationStyle = .overFullScreen
-
-//            нужно что-то лучше
-            UIApplication.shared.windows.first?.rootViewController = newVc
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
-            
-             
+            navigationController?.navigationItem.titleView = nil
+            navigationController?.setViewControllers([newVc], animated: true)
         }
     }
     
@@ -41,7 +69,6 @@ class ConfigureController: UIViewController {
     
     let ageInput: inputContainer = {
         let inp = inputContainer()
-        
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         inp.sexSwitch.isHidden = true
@@ -193,9 +220,10 @@ class ConfigureController: UIViewController {
         let coefficient = (weight > 35 && height > 120) ? log(height / weight) : 1
         let volume = age * weight * coefficient * sex
         let glass = volume / 200
-        finalVol.volumeLabel.text = volume > 0 ? String(Int(volume)) + " мл" : "2000 ml"
+        waterVolume = Int(volume)
+        cups = Int(glass)
+        finalVol.volumeLabel.text = volume > 0 ? String(Int(volume)) + " мл" : "2000 мл"
         finalVol.glassLabel.text = glass > 0 ? String(Int(round(glass))) + " стаканов" : "10 стаканов"
-
     }
     
 }

@@ -13,7 +13,7 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         
         let tvc = WhyNeedDrinkWaterController()
-        let articles = UITabBarItem(title: "Обзор", image: UIImage(systemName: "person.fill.questionmark"), selectedImage: UIImage(systemName: "person.fill.questionmark"))
+        let articles = UITabBarItem(title: "Обзор", image: UIImage(systemName: "heart"), selectedImage: UIImage(systemName: "heart"))
         tvc.tabBarItem = articles
         
         let svc = UINavigationController(rootViewController: SummaryViewController{ _ in })

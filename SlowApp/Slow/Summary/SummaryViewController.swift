@@ -7,12 +7,31 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 
 class SummaryViewController: UIViewController {
     // MARK: MyCode
-    private var currentCountOfCups: Int = 5
-    private var goalCountOfCups: Int = 10
+    private var currentDownloadDate = Date()
+    private lazy var database = Database.database().reference()
+    private var currentCountOfCups: Int = {
+        var ans = 0
+        return ans
+    }()
+    
+    private var goalCountOfCups: Int = {
+        var ans = 0
+        return ans
+    }()
+    
+    private var indicator : UIActivityIndicatorView = {
+        let ind = UIActivityIndicatorView()
+        ind.translatesAutoresizingMaskIntoConstraints = false
+        ind.backgroundColor = .clear
+        return ind
+    }()
+    
     private lazy var headingView : UILabel = {
         let label = UILabel()
         label.text = "Обзор"
@@ -33,7 +52,7 @@ class SummaryViewController: UIViewController {
         slider.value = 0.5
         slider.backgroundColor = .white
         slider.tintColor = UIColor(red: 168/255, green: 245/255, blue: 242/255, alpha: 1)
-        //        slider.track
+        
         return slider
     }()
     
@@ -49,8 +68,8 @@ class SummaryViewController: UIViewController {
     
     private lazy var glassChecker: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-//        layout.itemSize = CGSize(width: 80, height: 80)
+        //        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        //        layout.itemSize = CGSize(width: 80, height: 80)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 12
         
@@ -142,8 +161,14 @@ class SummaryViewController: UIViewController {
         self.selectedDate = baseDate
         self.baseDate = baseDate
         self.selectedDateChanged = selectedDateChanged
-        
+        //        self.currentCountOfCups = 3
+        //        self.goalCountOfCups = 4
         super.init(nibName: nil, bundle: nil)
+        
+        
+        
+        
+        
         
         modalPresentationStyle = .overCurrentContext
         modalTransitionStyle = .crossDissolve
@@ -155,13 +180,45 @@ class SummaryViewController: UIViewController {
     }
     
     // MARK: View Lifecycle
+    func reloadDataByDate(_ actualDate: Date){
+        indicator.isHidden = false
+        indicator.startAnimating()
+        let user = database.child(Auth.auth().currentUser!.uid)
+        user.child("cups").observe(.value, with: {snapshot in
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "ddMMyyyy"
+            let date = dateFormatterPrint.string(from: actualDate)
+            if let value = snapshot.value as? Int {
+                self.goalCountOfCups = value
+                user.child("history").child(date).observe(.value, with: {anotherSnapshot in
+                    if let anotherValue = anotherSnapshot.value as? Int {
+                        self.currentCountOfCups = anotherValue
+                        self.updateLabel()
+                        self.updateProgressBar()
+                        
+                    } else {
+                        self.currentCupsLabel.text = "Выпито: ?/\(self.goalCountOfCups)"
+                        self.currentCountOfCups = 0
+                        
+                    }
+                    self.indicator.stopAnimating()
+                    self.indicator.isHidden = true
+                    self.glassChecker.reloadData()
+                })
+            }
+        })
+    }
+    
+    private func updateProgressBar(){
+        self.waterProgressBar.setValue(Float(currentCountOfCups) / Float(goalCountOfCups), animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         collectionView.backgroundColor = .systemGroupedBackground
         view.backgroundColor = .white
-        
+        currentDownloadDate = baseDate
         view.addSubview(collectionView)
         view.addSubview(headerView)
         view.addSubview(footerView)
@@ -169,12 +226,24 @@ class SummaryViewController: UIViewController {
         view.addSubview(waterProgressBar)
         view.addSubview(currentCupsLabel)
         view.addSubview(glassChecker)
+        indicator.isHidden = false
+        headingView.addSubview(indicator)
+        
+        let indicator_constraints = [
+            indicator.leftAnchor.constraint(equalTo: headingView.leftAnchor),
+            indicator.topAnchor.constraint(equalTo: headingView.topAnchor),
+            indicator.bottomAnchor.constraint(equalTo: headingView.bottomAnchor),
+            indicator.widthAnchor.constraint(equalTo: indicator.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(indicator_constraints)
+        reloadDataByDate(Date())
+        
         let glassChecker_constraints = [
             glassChecker.topAnchor.constraint(equalTo: currentCupsLabel.bottomAnchor),
             glassChecker.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.defaultSideInsets),
             glassChecker.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.defaultSideInsets),
             glassChecker.heightAnchor.constraint(equalToConstant: Constants.defaultCupCellSize * (1 + 2/8))
-
+            
         ]
         NSLayoutConstraint.activate(glassChecker_constraints)
         let currentCupsLabel_constraints = [
@@ -211,16 +280,16 @@ class SummaryViewController: UIViewController {
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.defaultSideInsets),
             collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-
+            
             footerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor),
             footerView.rightAnchor.constraint(equalTo: collectionView.rightAnchor),
             footerView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             footerView.heightAnchor.constraint(equalToConstant: 60),
-//          на всякий случай
+            //          на всякий случай
             footerView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
-
+        
         NSLayoutConstraint.activate(calendar_constraints)
         
         collectionView.register(
@@ -240,6 +309,10 @@ class SummaryViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         collectionView.reloadData()
     }
+    func updateLabel () {
+        currentCupsLabel.text = "Выпито: \(currentCountOfCups)/\(goalCountOfCups)"
+    }
+    
 }
 
 // MARK: - Day Generation
@@ -268,6 +341,7 @@ private extension SummaryViewController {
             firstDay: firstDayOfMonth,
             firstDayWeekday: firstDayWeekday)
     }
+    
     
     // 1
     func generateDaysInMonth(for baseDate: Date) -> [Day] {
@@ -396,7 +470,18 @@ extension SummaryViewController: UICollectionViewDataSource {
                 withReuseIdentifier: CalendarDateCollectionViewCell.reuseIdentifier,
                 for: indexPath) as! CalendarDateCollectionViewCell
             // swiftlint:disable:previous force_cast
+            //            before
+            //            cell.day = day
             
+            //            return cell
+            //            after
+            
+            if day.date == baseDate {
+                cell.applySelectedStyle()
+            }
+            if day.date == currentDownloadDate{
+                cell.numberLabel.textColor = .systemBlue
+            }
             cell.day = day
             return cell
         }
@@ -410,31 +495,65 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout {
         didSelectItemAt indexPath: IndexPath
     ) {
         if collectionView == self.glassChecker {
-            if indexPath[1] == 0 {
-                currentCountOfCups += 1
-                
-                let lastSection = collectionView.numberOfSections - 1
-                collectionView.insertItems(at: [IndexPath(row: 1, section: lastSection)])
-                let indexPath = IndexPath(row: 0, section: lastSection)
-                collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-            } else {
-                currentCountOfCups -= 1
-                collectionView.deleteItems(at: [indexPath])
-                
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "ddMMyyyy"
+            
+            if dateFormatterPrint.string(from: baseDate) == dateFormatterPrint.string(from: currentDownloadDate) {
+                if indexPath[1] == 0 {
+                    debugPrint("addButton pressed")
+                    currentCountOfCups += 1
+                    let lastSection = collectionView.numberOfSections - 1
+                    collectionView.insertItems(at: [IndexPath(row: 1, section: lastSection)])
+                    let indexPath = IndexPath(row: 0, section: lastSection)
+                    collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+                } else {
+                    currentCountOfCups -= 1
+                    collectionView.deleteItems(at: [indexPath])
+                }
+                indicator.isHidden = false
+                indicator.startAnimating()
+                let user = database.child(Auth.auth().currentUser!.uid)
+                let dateFormatterPrint = DateFormatter()
+                dateFormatterPrint.dateFormat = "ddMMyyyy"
+                let date = dateFormatterPrint.string(from: currentDownloadDate)
+                user.child("history").child(date).setValue(currentCountOfCups, withCompletionBlock: {(err,_) in
+                    if let _ = err {
+                        debugPrint("ЧТо-то плохое в присваивании")
+                    }
+                    
+                    self.indicator.isHidden = true
+                    self.indicator.stopAnimating()
+                })
+                waterProgressBar.setValue(Float(currentCountOfCups) / Float(goalCountOfCups), animated: true)
+                currentCupsLabel.text = "Выпито: \(currentCountOfCups)/\(goalCountOfCups)"
             }
-            waterProgressBar.setValue(Float(currentCountOfCups) / Float(goalCountOfCups), animated: true)
-            currentCupsLabel.text = "Выпито: \(currentCountOfCups)/\(goalCountOfCups)"
             
         } else {
-            if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.selectionBackgroundView.isHidden == false}){
-                defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
+            if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.numberLabel.textColor == .systemBlue }){
+                if defaultCell.selectionBackgroundView.isHidden {
+                    defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
+                }
+                else {
+                    defaultCell.numberLabel.textColor = .black
+                }
             }
             if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
-                cell.applySelectedStyle()
+                if cell.selectionBackgroundView.isHidden  {
+                    if (cell.numberLabel.textColor != .secondaryLabel){
+                        cell.numberLabel.textColor = .systemBlue
+                        currentDownloadDate = cell.day!.date
+                        reloadDataByDate(cell.day!.date)
+                    }
+                } else {
+                    if (cell.numberLabel.textColor != .secondaryLabel){
+                    cell.numberLabel.textColor = .systemBlue
+                    currentDownloadDate = cell.day!.date
+                        reloadDataByDate(cell.day!.date)
+                        
+                    }
+                }
             }
         }
-
-        
     }
     
     func collectionView(

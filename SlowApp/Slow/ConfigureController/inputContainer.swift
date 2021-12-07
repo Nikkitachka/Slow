@@ -8,6 +8,7 @@
 import UIKit
 
 class inputContainer: UIView {
+    
     var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -15,7 +16,7 @@ class inputContainer: UIView {
         return label
     }()
     
-    var textField: UITextField = {
+    lazy var textField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = .numberPad
@@ -35,6 +36,7 @@ class inputContainer: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        textField.delegate = self
         self.isUserInteractionEnabled = true
         self.addCustomView()
         self.layer.cornerRadius = 18
@@ -70,4 +72,15 @@ class inputContainer: UIView {
     
     
     
+}
+extension inputContainer: UITextFieldDelegate {
+    //MARK - UITextField Delegates
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == textField {
+            let allowedCharacters = CharacterSet(charactersIn: "0123456789")//Here change this characters based on your requirement
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        return true
+    }
 }

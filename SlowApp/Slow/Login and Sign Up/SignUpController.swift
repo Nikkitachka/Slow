@@ -12,6 +12,7 @@ class SignUpController: UIViewController {
     
     @objc
     func goToLoginController() {
+        
         navigationController?.pushViewController(LoginController(), animated: true)
     }
     

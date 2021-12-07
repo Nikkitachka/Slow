@@ -18,15 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        try? Auth.auth().signOut()
+//        try? Auth.auth().signOut()
         if Auth.auth().currentUser != nil {
             window?.rootViewController = MainViewController()
-
-            
-
             window?.makeKeyAndVisible()
         } else {
-            window?.rootViewController = UINavigationController(rootViewController: SignUpController())
+            let authControllers = UINavigationController(rootViewController: SignUpController())
+            window?.rootViewController = authControllers
             window?.makeKeyAndVisible()
         }
         
@@ -46,7 +44,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
-
-
 }
 
