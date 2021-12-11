@@ -10,10 +10,7 @@ import SafariServices
 
 class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate {
     
-    let articles = [("bbc.com","Так сколько же воды надо выпивать ежедневно? И зачем?",UIImage(named: "bbc"), "https://www.bbc.com/russian/vert-fut-47880538"),
-                    ("ecomaster.ru","10 причин не пить воду",UIImage(named: "ecomaster"),"https://ecomaster.ru/articles/10-prichin-pit-vodu"),
-                    ("ru.wikipedia.org","Вода", UIImage(named: "Wiki"), "https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B4%D0%B0")
-    ]
+    let articles = articlesList
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
     }
@@ -21,7 +18,7 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
             let width  = (view.frame.width)
-            return CGSize(width: width, height: width/1.5)
+            return CGSize(width: width, height: width/2.3)
             
                 
             
@@ -39,7 +36,7 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
         let element = articles[index]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
         cell.setImage(image: element.2)
-        cell.setTexts(link: element.0, header: element.1)
+        cell.setTexts(link: element.0, header: element.1, content: element.4)
         return cell
     }
     
@@ -96,11 +93,16 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
 
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         self.view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 244, green: 244, blue: 244, alpha: 0.95))
-        SummaryLabel.text = "Зачем пить воду?"
+        SummaryLabel.text = "Зачем пить воду"
         self.navigationItem.titleView = SummaryLabel
         
-        self.navigationController?.navigationBar.backgroundColor = .white
-        
+        if #available(iOS 13, *) {
+                let appearance = UINavigationBarAppearance()
+                appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .white
+                navigationController?.navigationBar.standardAppearance = appearance;
+                navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+            }
         
         
         allItems.dataSource = self
@@ -114,7 +116,6 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
           allItems.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ]
         NSLayoutConstraint.activate(allItems_constraints)
-        
         
     }
  

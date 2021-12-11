@@ -36,6 +36,7 @@
 		5752EA362742D9C50085C0FF /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA302742D9C40085C0FF /* SignUpController.swift */; };
 		5752EA372742D9C50085C0FF /* switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA312742D9C40085C0FF /* switcher.swift */; };
 		5752EA382742D9C50085C0FF /* ConfigureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA322742D9C50085C0FF /* ConfigureController.swift */; };
+		57A55D1E2764FC20005EBDCD /* articleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A55D1D2764FC20005EBDCD /* articleList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5752EA302742D9C40085C0FF /* SignUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5752EA312742D9C40085C0FF /* switcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = switcher.swift; sourceTree = "<group>"; };
 		5752EA322742D9C50085C0FF /* ConfigureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureController.swift; sourceTree = "<group>"; };
+		57A55D1D2764FC20005EBDCD /* articleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articleList.swift; sourceTree = "<group>"; };
 		73D864A6E3E2F3B4B306B47C /* Pods-Slow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slow.debug.xcconfig"; path = "Target Support Files/Pods-Slow/Pods-Slow.debug.xcconfig"; sourceTree = "<group>"; };
 		AC7B191FF48FEAC4E0551C66 /* Pods_Slow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 			children = (
 				2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */,
 				2A0BD8902741AD1300E03446 /* ArticleCell.swift */,
+				57A55D1D2764FC20005EBDCD /* articleList.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			files = (
 				2AA6E7FB272B2E15004A08B0 /* AppDelegate.swift in Sources */,
 				2AA6E805272B2E15004A08B0 /* Slow.xcdatamodeld in Sources */,
+				57A55D1E2764FC20005EBDCD /* articleList.swift in Sources */,
 				2AA5DDDC274C2CAD000C0AF6 /* CalendarPickerFooterView.swift in Sources */,
 				2AF4FF0D275C0A130004ABBC /* ModelOfDatabase.swift in Sources */,
 				2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */,
