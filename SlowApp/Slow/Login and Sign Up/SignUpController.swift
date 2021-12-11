@@ -88,7 +88,7 @@ class SignUpController: UIViewController {
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         // Тут в эмуляторе вылазит прдложенный пароль, который нельзя отменить :(
-        //tf.isSecureTextEntry = true
+        tf.isSecureTextEntry = true
         tf.attributedPlaceholder = NSAttributedString(
             string: "пароль",
             attributes: [.paragraphStyle: centeredParagraphStyle]

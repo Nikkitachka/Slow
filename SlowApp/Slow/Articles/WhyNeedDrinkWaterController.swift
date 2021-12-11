@@ -35,18 +35,12 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
         let index = indexPath[1]
         let element = articles[index]
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
         cell.setImage(image: element.2)
         cell.setTexts(link: element.0, header: element.1)
         return cell
-        
-        
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
