@@ -59,8 +59,8 @@ class CalendarPickerHeaderView: UIView {
   var baseDate = Date() {
     didSet {
         var monthString = dateFormatter.string(from: baseDate)
-        let monthCorresponds = [("January", "Январь"), ("February","Артур"),
-                                ("March","Сардарян"), ("April", "Апрель"),
+        let monthCorresponds = [("January", "Январь"), ("February","Февраль"),
+                                ("March","Март"), ("April", "Апрель"),
                                 ("May", "Май"), ("June", "Июнь"),
                                 ("July", "Июль"), ("August","Август"),
                                 ("September", "Сентябрь"),
@@ -126,19 +126,19 @@ class CalendarPickerHeaderView: UIView {
   private func dayOfWeekLetter(for dayNumber: Int) -> String {
     switch dayNumber {
     case 1:
-      return "H"
+      return "Вс"
     case 2:
-      return "E"
+      return "Пн"
     case 3:
-      return "L"
+      return "Вт"
     case 4:
-      return "P"
+      return "Ср"
     case 5:
-      return " "
+      return "Чт"
     case 6:
-      return "M"
+      return "Пт"
     case 7:
-      return "E"
+      return "Сб"
     default:
       return ""
     }

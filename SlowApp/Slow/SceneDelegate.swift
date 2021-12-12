@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        try? Auth.auth().signOut()
+//        try? Auth.auth().signOut()
         if Auth.auth().currentUser != nil {
             window?.rootViewController = MainViewController()
             window?.makeKeyAndVisible()

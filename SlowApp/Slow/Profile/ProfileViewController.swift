@@ -6,30 +6,32 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var profileImage : UIImage? = UIImage(named: "Rock")
     var level: Int = 0
     var numberOfCups : Int = 10
-    
-    
+    var defaultCup : String = "defaultCup"
+    let database = Database.database().reference()
     
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
             let width  = (view.frame.width)
             switch indexPath[1] {
+//            case 0:
+//                return CGSize(width: width, height: width/1.5)
             case 0:
-                return CGSize(width: width, height: width/1.5)
-            case 1:
                 return CGSize(width: width, height: width/2)
-            case 2:
+            case 1:
                 return CGSize(width: width, height: width/1.5)
 //            case 3:
 //                return CGSize(width: width, height: width/3)
@@ -52,21 +54,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
+//        if indexPath[1] == 0 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageCell
+//            let width  = (view.frame.width)
+//            cell.profileImageView.layer.cornerRadius = width/1.5/2
+//            cell.profileImageView.layer.masksToBounds = false
+//            cell.profileImageView.clipsToBounds = true
+//    //        cell.backgroundColor = .white
+//            return cell
+//        } else
         if indexPath[1] == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageCell
-            let width  = (view.frame.width)
-            cell.profileImageView.layer.cornerRadius = width/1.5/2
-            cell.profileImageView.layer.masksToBounds = false
-            cell.profileImageView.clipsToBounds = true
-    //        cell.backgroundColor = .white
-            return cell
-        } else if indexPath[1] == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LevelLabelCell", for: indexPath) as! LevelLabelCell
             cell.setText( text: "Уровень \(level) \n Это означает, что ваша\n максимальная серия\n недель — \(level)")
             
             return cell
-        } else if indexPath[1] == 2 {
+        } else if indexPath[1] == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupsTableViewCell", for: indexPath) as! CupsTableViewCell
+            database.child(Auth.auth().currentUser!.uid).child("defaultCup").observe(.value, with: {snapshot in
+                self.defaultCup = snapshot.value as! String
+                cell.selectedIndexPath = IndexPath(item: cell.cups.firstIndex(of: self.defaultCup)!, section: 0)
+            })
             
                 
             return cell

@@ -36,22 +36,15 @@ class ConfigureController: UIViewController {
             database.child(uid).observe(.value, with: {snapshot in
                 if !snapshot.hasChild("history") {
                     debugPrint("Empty History")
-//                    let dateFormatterGet = NSDateFormatter()
-//                    dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//
-//                    let dateFormatterPrint = NSDateFormatter()
-//                    dateFormatterPrint.dateFormat = "MMM dd,yyyy"
-//
-//                    let date: NSDate? = dateFormatterGet.dateFromString("2016-02-29 12:24:26")
-//                    print(dateFormatterPrint.stringFromDate(date!))
-                    
-                    
                     let dateFormatterPrint = DateFormatter()
                     dateFormatterPrint.dateFormat = "ddMMyyyy"
                     let date = dateFormatterPrint.string(from: Date())
 
                     self.database.child(uid).child("history").setValue( [date : 0] as NSDictionary)
 
+                }
+                if !snapshot.hasChild("defaultCup") {
+                    self.database.child(uid).child("defaultCup").setValue("defaultcup")
                 }
 
             })

@@ -13,6 +13,14 @@ import FirebaseAuth
 
 class SummaryViewController: UIViewController {
     // MARK: MyCode
+    
+    private var defaultCup = "defaultCup"
+    private var checkDateFormater : DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "ddMMyyyy"
+        return df
+    }()
+    
     private var currentDownloadDate = Date()
     private lazy var database = Database.database().reference()
     private var currentCountOfCups: Int = {
@@ -183,6 +191,7 @@ class SummaryViewController: UIViewController {
     func reloadDataByDate(_ actualDate: Date){
         indicator.isHidden = false
         indicator.startAnimating()
+        
         let user = database.child(Auth.auth().currentUser!.uid)
         user.child("cups").observe(.value, with: {snapshot in
             let dateFormatterPrint = DateFormatter()
@@ -195,7 +204,9 @@ class SummaryViewController: UIViewController {
                         self.currentCountOfCups = anotherValue
                         self.updateLabel()
                         self.updateProgressBar()
-                        
+                        dateFormatterPrint.dateFormat = "dd.MM.yyyy"
+                        let adds = dateFormatterPrint.string(from: actualDate) == dateFormatterPrint.string(from: self.baseDate) ? "" : dateFormatterPrint.string(from: actualDate)
+                        self.currentCupsLabel.text = "Выпито: \(anotherValue)/\(self.goalCountOfCups) " + adds
                     } else {
                         self.currentCupsLabel.text = "Выпито: ?/\(self.goalCountOfCups)"
                         self.currentCountOfCups = 0
@@ -204,6 +215,8 @@ class SummaryViewController: UIViewController {
                     self.indicator.stopAnimating()
                     self.indicator.isHidden = true
                     self.glassChecker.reloadData()
+                    
+                    
                 })
             }
         })
@@ -312,6 +325,17 @@ class SummaryViewController: UIViewController {
     func updateLabel () {
         currentCupsLabel.text = "Выпито: \(currentCountOfCups)/\(goalCountOfCups)"
     }
+    override func viewWillAppear(_ animated: Bool) {
+        database.child(Auth.auth().currentUser!.uid).child("defaultCup").observe(.value, with: {snapshot in
+            debugPrint("hey")
+            if let cup = snapshot.value as? String {
+                if cup != self.defaultCup {
+                    self.defaultCup = cup
+                    self.glassChecker.reloadData()
+                }
+            }
+        })
+    }
     
 }
 
@@ -393,7 +417,8 @@ private extension SummaryViewController {
             date: date,
             number: dateFormatter.string(from: date),
             isSelected: calendar.isDate(date, inSameDayAs: selectedDate),
-            isWithinDisplayedMonth: isWithinDisplayedMonth
+            isWithinDisplayedMonth: isWithinDisplayedMonth,
+            isDownloaded: checkDateFormater.string(from: date) == checkDateFormater.string(from: currentDownloadDate)
         )
     }
     
@@ -455,9 +480,9 @@ extension SummaryViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
             
             if indexPath[1] == 0 {
-                
                 cell.cellForAdd()
             } else {
+                cell.image.image = UIImage(named: defaultCup)
                 cell.defaultCell()
             }
             
@@ -476,12 +501,22 @@ extension SummaryViewController: UICollectionViewDataSource {
             //            return cell
             //            after
             
-            if day.date == baseDate {
-                cell.applySelectedStyle()
-            }
-            if day.date == currentDownloadDate{
-                cell.numberLabel.textColor = .systemBlue
-            }
+            
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "ddMMyyyy"
+            
+            //            dateFormatterPrint.string(from: baseDate)
+            //            dateFormatterPrint.string(from: currentDownloadDate)
+            //            dateFormatterPrint.string(from: day.date)
+            
+            //            cell.numberLabel.textColor = .systemBlue
+            //            if dateFormatterPrint.string(from: day.date) == dateFormatterPrint.string(from: baseDate) {
+            //                cell.applySelectedStyle()
+            ////                cell.numberLabel.textColor = .systemBlue
+            //            }
+            //            if dateFormatterPrint.string(from: day.date) != dateFormatterPrint.string(from: currentDownloadDate){
+            //                cell.numberLabel.textColor = .black
+            //            }
             cell.day = day
             return cell
         }
@@ -500,39 +535,39 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout {
             
             if dateFormatterPrint.string(from: baseDate) == dateFormatterPrint.string(from: currentDownloadDate) {
                 if indexPath[1] == 0 {
-                    debugPrint("addButton pressed")
-                    currentCountOfCups += 1
+                    self.currentCountOfCups += 1
                     let lastSection = collectionView.numberOfSections - 1
-                    collectionView.insertItems(at: [IndexPath(row: 1, section: lastSection)])
+                    collectionView.insertItems(at: [IndexPath(row: self.currentCountOfCups, section: lastSection)])
                     let indexPath = IndexPath(row: 0, section: lastSection)
                     collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
                 } else {
-                    currentCountOfCups -= 1
-                    collectionView.deleteItems(at: [indexPath])
+                    
+                    collectionView.deleteItems(at: [IndexPath(item: indexPath.item, section: 0)])
+                    self.currentCountOfCups -= 1
                 }
                 indicator.isHidden = false
                 indicator.startAnimating()
                 let user = database.child(Auth.auth().currentUser!.uid)
-                let dateFormatterPrint = DateFormatter()
-                dateFormatterPrint.dateFormat = "ddMMyyyy"
                 let date = dateFormatterPrint.string(from: currentDownloadDate)
                 user.child("history").child(date).setValue(currentCountOfCups, withCompletionBlock: {(err,_) in
                     if let _ = err {
                         debugPrint("ЧТо-то плохое в присваивании")
+                    }else {
+                        self.indicator.isHidden = true
+                        self.indicator.stopAnimating()
+                        
                     }
-                    
-                    self.indicator.isHidden = true
-                    self.indicator.stopAnimating()
                 })
                 waterProgressBar.setValue(Float(currentCountOfCups) / Float(goalCountOfCups), animated: true)
                 currentCupsLabel.text = "Выпито: \(currentCountOfCups)/\(goalCountOfCups)"
             }
             
         } else {
-            if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.numberLabel.textColor == .systemBlue }){
+            
+            if let defaultCell = (collectionView.visibleCells as! [CalendarDateCollectionViewCell]).first(where: {$0.numberLabel.textColor == .systemBlue })
+            {
                 if defaultCell.selectionBackgroundView.isHidden {
-                    defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true)
-                    
+                    defaultCell.applyDefaultStyle(isWithinDisplayedMonth: true, textColor: .black)
                     
                 }
                 else {
@@ -540,9 +575,10 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout {
                 }
                 if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
                     if cell.selectionBackgroundView.isHidden  {
-                    if (cell.numberLabel.textColor == .secondaryLabel){
-                        defaultCell.numberLabel.textColor = .systemBlue
-                    }}}
+                        if (cell.numberLabel.textColor == .secondaryLabel){
+                            defaultCell.numberLabel.textColor = .systemBlue
+                            currentDownloadDate = cell.day!.date
+                        }}}
             }
             if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDateCollectionViewCell {
                 if cell.selectionBackgroundView.isHidden  {
@@ -553,8 +589,8 @@ extension SummaryViewController: UICollectionViewDelegateFlowLayout {
                     }
                 } else {
                     if (cell.numberLabel.textColor != .secondaryLabel){
-                    cell.numberLabel.textColor = .systemBlue
-                    currentDownloadDate = cell.day!.date
+                        cell.numberLabel.textColor = .systemBlue
+                        currentDownloadDate = cell.day!.date
                         reloadDataByDate(cell.day!.date)
                         
                     }

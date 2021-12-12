@@ -19,9 +19,6 @@ class WhyNeedDrinkWaterController: UIViewController, UICollectionViewDelegate, U
         {
             let width  = (view.frame.width)
             return CGSize(width: width, height: width/2.3)
-            
-                
-            
         }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

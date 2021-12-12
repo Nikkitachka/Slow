@@ -4,33 +4,27 @@
 //
 //  Created by Петр Ларочкин on 14.11.2021.
 //
-
+import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    
+    var selectedIndexPath :IndexPath = IndexPath(item: 0, section: 0)
+    var level = 6
+    let database = Database.database().reference()
     let cups = [
-        UIImage(named: "blood"),
-        UIImage(named: "beer"),
-        UIImage(named: "classic"),
-        UIImage(named: "rose"),
-        UIImage(named: "noire"),
-        UIImage(named: "default"),
-        UIImage(named: "blood"),
-        UIImage(named: "beer"),
-        UIImage(named: "classic"),
-        UIImage(named: "rose"),
-        UIImage(named: "noire"),
-        UIImage(named: "default"),
-        UIImage(named: "blood"),
-        UIImage(named: "beer"),
-        UIImage(named: "classic"),
-        UIImage(named: "rose"),
-        UIImage(named: "noire"),
-        UIImage(named: "default")
+        "blood",
+        "beer",
+        "classic",
+        "rose",
+        "noire",
+        "default"
     ]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cups.count
+        level
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -62,16 +56,27 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         
        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CupCollectionViewCell", for: indexPath) as! CupCollectionViewCell
+        cell.image.image = UIImage(named: cups[indexPath[1]])
+//        if indexPath == selectedIndexPath {
+//            cell.backgroundColor = .black
+//        } else {
+//            cell.backgroundColor = .clear
+//        }
         
-        cell.image.image = cups[indexPath[1]]
-        cell.closeImageView.isHidden = true
-
+        cell.defaultCell()
+        cell.viewForClose.isHidden = true
+        
+//        cell.defaultCell(cups[indexPath[1]])
         return cell
        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        debugPrint("added")
+        collectionView.cellForItem(at: selectedIndexPath)?.backgroundColor = .clear
+        selectedIndexPath = indexPath
+        collectionView.cellForItem(at: indexPath)?.backgroundColor = .black
+        database.child(Auth.auth().currentUser!.uid).child("defaultCup").setValue(cups[indexPath.row])
     }
    
     
@@ -94,12 +99,13 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         return collection
         
     }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         allItems.dataSource = self
         allItems.delegate = self
         allItems.layer.cornerRadius = 13
+        
+        
         self.addSubview(cupsLabel)
         self.addSubview(allItems)
         self.layer.cornerRadius = 13
@@ -116,12 +122,13 @@ class CupsTableViewCell: UICollectionViewCell, UICollectionViewDelegate, UIColle
         ]
         NSLayoutConstraint.activate(constraint)
         
-    
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+   
     
 }

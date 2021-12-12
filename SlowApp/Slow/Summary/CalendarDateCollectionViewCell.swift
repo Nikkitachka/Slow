@@ -98,10 +98,12 @@ extension CalendarDateCollectionViewCell {
     func updateSelectionStatus() {
         guard let day = day else { return }
         
+        
+        let color = day.isDownloaded ? UIColor.systemBlue : UIColor.black
         if day.isSelected {
-            applySelectedStyle()
+            applySelectedStyle(textColor: color)
         } else {
-            applyDefaultStyle(isWithinDisplayedMonth: day.isWithinDisplayedMonth)
+            applyDefaultStyle(isWithinDisplayedMonth: day.isWithinDisplayedMonth,textColor: color)
         }
     }
     
@@ -115,22 +117,23 @@ extension CalendarDateCollectionViewCell {
     }
     
     // 3
-    func applySelectedStyle() {
+    func applySelectedStyle( textColor : UIColor) {
         accessibilityTraits.insert(.selected)
         accessibilityHint = nil
         
         
 //        numberLabel.textColor = isSmallScreenSize ? .systemRed : .white
-        numberLabel.textColor = .systemBlue
+        numberLabel.textColor = textColor
         selectionBackgroundView.isHidden = isSmallScreenSize
     }
     
     // 4
-    func applyDefaultStyle(isWithinDisplayedMonth: Bool) {
+    func applyDefaultStyle(isWithinDisplayedMonth: Bool, textColor : UIColor) {
         accessibilityTraits.remove(.selected)
         accessibilityHint = "Tap to select"
         
-        numberLabel.textColor = isWithinDisplayedMonth ? .label : .secondaryLabel
+//        numberLabel.textColor = isWithinDisplayedMonth ? .label : .secondaryLabel
+        numberLabel.textColor = isWithinDisplayedMonth ? textColor : .secondaryLabel
         selectionBackgroundView.isHidden = true
     }
 }

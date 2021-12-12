@@ -26,7 +26,7 @@ class LevelLabelCell: UICollectionViewCell {
         super.init(frame: frame)
         
         
-
+        
 
         self.addSubview(contentLabel)
         let constraints =
