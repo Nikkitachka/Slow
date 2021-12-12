@@ -17,16 +17,25 @@ class ConfigureController: UIViewController {
     private let email: String
     private var cups: Int = 10
     private var waterVolume: Int = 2000
-    
+    public func setAllParameters (age: Int, sex: Bool, height: Float, weight : Float ){
+        ageInput.textField.text = "\(age)"
+        sexInput.sexSwitch.sexSwitch.isOn = sex
+        heightInput.textField.text = "\(height)"
+        weightInput.textField.text = "\(weight)"
+    }
     @objc
     func goToMainViewController() {
 
-        if let age = Int(ageInput.textField.text!), let height = Float(heightInput.textField.text!), let uid = Auth.auth().currentUser?.uid   {
+        if let age = Int(ageInput.textField.text!),
+            let height = Float(heightInput.textField.text!),
+            let uid = Auth.auth().currentUser?.uid,
+           let weight = Float(weightInput.textField.text!) {
         
             let sex = sexInput.sexSwitch.sexSwitch.isOn ? "Male" : "Female"
             database.child(uid).child("age").setValue(age)
             database.child(uid).child("sex").setValue(sex)
             database.child(uid).child("height").setValue(height)
+            database.child(uid).child("weight").setValue(weight)
             database.child(uid).child("dailyWaterIntake").setValue(waterVolume)
             database.child(uid).child("cups").setValue(cups)
             
@@ -44,7 +53,7 @@ class ConfigureController: UIViewController {
 
                 }
                 if !snapshot.hasChild("defaultCup") {
-                    self.database.child(uid).child("defaultCup").setValue("defaultcup")
+                    self.database.child(uid).child("defaultCup").setValue("default")
                 }
 
             })

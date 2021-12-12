@@ -20,6 +20,24 @@ class CupCollectionViewCell: UICollectionViewCell {
         
         return imageView
     }()
+    lazy var viewForSelected : UIView = {
+        let close = UIView()
+        let closeImage = UIImage(systemName:  "checkmark.seal.fill")
+        let imageView = UIImageView(image: closeImage)
+        imageView.contentMode = .scaleAspectFit
+        close.addSubview(imageView)
+//        close.backgroundColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 0.5)
+        close.layer.cornerRadius = 10
+        close.translatesAutoresizingMaskIntoConstraints = false
+        let imageView_constraints = [
+            imageView.centerXAnchor.constraint(equalTo: close.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: close.centerYAnchor),
+            imageView.widthAnchor.constraint(equalTo: close.heightAnchor),
+            imageView.leftAnchor.constraint(equalTo: close.leftAnchor, constant: 5),
+        ]
+        NSLayoutConstraint.activate(imageView_constraints)
+        return close
+    }()
     var plusImage = UIImageView(image: UIImage(named: "+mark.png")?.withAlignmentRectInsets( UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)))
     var defaultCup = UIImage(named: "defaultcup.png")?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     var image = UIImageView()
@@ -42,11 +60,19 @@ class CupCollectionViewCell: UICollectionViewCell {
     func setImageByName (_ name : String){
         
     }
+    func selectCup(){
+        viewForSelected.isHidden = false
+        
+    }
+    func unSelectCup(){
+        viewForSelected.isHidden = true
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         image.image = defaultCup
-//        self.backgroundColor = .yellow
+        unSelectCup()
         self.addSubview(back)
         let backConstraints =
         [back.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 0),
@@ -93,6 +119,16 @@ class CupCollectionViewCell: UICollectionViewCell {
          viewForClose.widthAnchor.constraint(equalTo: image.heightAnchor, multiplier: 1/3)
         ]
         NSLayoutConstraint.activate(viewForCloseConstraints)
+        
+        self.addSubview(viewForSelected)
+        let viewForSelectedConstraints =
+        [viewForSelected.centerXAnchor.constraint(equalTo: image.rightAnchor),
+         viewForSelected.centerYAnchor.constraint(equalTo: image.bottomAnchor),
+         viewForSelected.heightAnchor.constraint(equalTo: image.heightAnchor, multiplier: 1/3),
+         viewForSelected.widthAnchor.constraint(equalTo: image.heightAnchor, multiplier: 1/3)
+        ]
+        NSLayoutConstraint.activate(viewForSelectedConstraints)
+        
     }
 
     func defaultCell(){

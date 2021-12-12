@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		043ADC124CA6C0DB5D2184B3 /* Pods_Slow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7B191FF48FEAC4E0551C66 /* Pods_Slow.framework */; };
-		2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD8872741760D00E03446 /* ProfileImageCell.swift */; };
-		2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD889274199CB00E03446 /* LevelLabelCell.swift */; };
-		2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */; };
 		2A0BD88E2741AB7600E03446 /* WhyNeedDrinkWaterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */; };
 		2A0BD8912741AD1300E03446 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BD8902741AD1300E03446 /* ArticleCell.swift */; };
 		2A491C69273538B500AC2037 /* CupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */; };
@@ -41,9 +38,6 @@
 
 /* Begin PBXFileReference section */
 		2293FAF638A884E87E7EF578 /* Pods-Slow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slow.release.xcconfig"; path = "Target Support Files/Pods-Slow/Pods-Slow.release.xcconfig"; sourceTree = "<group>"; };
-		2A0BD8872741760D00E03446 /* ProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
-		2A0BD889274199CB00E03446 /* LevelLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelLabelCell.swift; sourceTree = "<group>"; };
-		2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupsTableViewCell.swift; sourceTree = "<group>"; };
 		2A0BD88D2741AB7600E03446 /* WhyNeedDrinkWaterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhyNeedDrinkWaterController.swift; sourceTree = "<group>"; };
 		2A0BD8902741AD1300E03446 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		2A491C68273538B500AC2037 /* CupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -164,9 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				2AEBB67D2739B0010014443B /* ProfileViewController.swift */,
-				2A0BD8872741760D00E03446 /* ProfileImageCell.swift */,
-				2A0BD889274199CB00E03446 /* LevelLabelCell.swift */,
-				2A0BD88B27419D9100E03446 /* CupsTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -334,18 +325,15 @@
 				5752EA342742D9C50085C0FF /* inputContainer.swift in Sources */,
 				5752EA352742D9C50085C0FF /* finalWaterVolume.swift in Sources */,
 				2A0BD88E2741AB7600E03446 /* WhyNeedDrinkWaterController.swift in Sources */,
-				2A0BD88A274199CB00E03446 /* LevelLabelCell.swift in Sources */,
 				5752EA362742D9C50085C0FF /* SignUpController.swift in Sources */,
 				5752EA382742D9C50085C0FF /* ConfigureController.swift in Sources */,
 				2A0BD8912741AD1300E03446 /* ArticleCell.swift in Sources */,
 				2AA5DDE2274C2CAD000C0AF6 /* MonthMetadata.swift in Sources */,
 				2A70F5962730515600D88D37 /* MainViewController.swift in Sources */,
-				2A0BD88C27419D9100E03446 /* CupsTableViewCell.swift in Sources */,
 				2AA5DDDE274C2CAD000C0AF6 /* CalendarDateCollectionViewCell.swift in Sources */,
 				2AA5DDE1274C2CAD000C0AF6 /* Day.swift in Sources */,
 				2AEBB67E2739B0010014443B /* ProfileViewController.swift in Sources */,
 				2A70F5982730537100D88D37 /* SummaryViewController.swift in Sources */,
-				2A0BD8882741760D00E03446 /* ProfileImageCell.swift in Sources */,
 				2AA5DDDF274C2CAD000C0AF6 /* CalendarPickerHeaderView.swift in Sources */,
 				5752EA332742D9C50085C0FF /* LoginController.swift in Sources */,
 			);
