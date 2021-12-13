@@ -30,7 +30,11 @@ class LoginController: UIViewController {
                             return
                         } else {
                             debugPrint("Successfully get user: \(String(describing: user?.user.uid ?? "" ))")
-                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                            let newVc = MainViewController()
+                            newVc.modalPresentationStyle = .overFullScreen
+                            self.navigationController?.navigationItem.titleView = nil
+                            self.navigationController?.setViewControllers([newVc], animated: true)
+//                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                         }
                     
                     

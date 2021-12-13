@@ -226,6 +226,9 @@ class ConfigureController: UIViewController {
         cups = Int(glass)
         finalVol.volumeLabel.text = volume > 0 ? String(Int(volume)) + " мл" : "2000 мл"
         finalVol.glassLabel.text = glass > 0 ? String(Int(round(glass))) + " стаканов" : "10 стаканов"
+        if weight > 200 { weightInput.textField.text = "200" }
+        if height > 300 { heightInput.textField.text = "300" }
+        if (Double(ageInput.textField.text ?? "0") ?? 0) > 120 { ageInput.textField.text = "120" }
     }
     
 }

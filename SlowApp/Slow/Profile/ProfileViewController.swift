@@ -18,12 +18,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate {
     var defaultCup : String = "default"
     
     let cups = [
+        "flat",
+        "green",
+        "h2o",
+        "trubka",
+        "classic",
+        "glass",
+        "glassalt",
+        "wine",
+        "winealt",
+        "noire",
+        "default",
+        "bottle",
+        "bottlealt",
+        "bucket",
+        "hotcup",
+        "lovecup",
         "blood",
         "beer",
-        "classic",
         "rose",
-        "noire",
-        "default"
+        "whiskey"
     ]
     
     @objc private func signOutButtonPressed (){
