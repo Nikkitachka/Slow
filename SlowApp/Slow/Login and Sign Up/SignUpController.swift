@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class SignUpController: UIViewController {
+class SignUpController: UIViewController, ButtonDelegate {
     
     @objc
     func goToLoginController() {
@@ -30,7 +30,9 @@ class SignUpController: UIViewController {
                             return
                         } else {
                             debugPrint("Successfully created user: \(String(describing: user?.user.uid ?? "" ))")
-                            self.navigationController?.pushViewController(ConfigureController(email), animated: true)
+                            let newVC = ConfigureController(email)
+                            newVC.delegate = self
+                            self.navigationController?.pushViewController(newVC, animated: true)
                         }
                 })
             }
@@ -181,6 +183,13 @@ class SignUpController: UIViewController {
             stackView.heightAnchor.constraint(equalToConstant: 265)
             ])
 
+    }
+    func onButtonTap(sender: UIButton) {
+        print("This button was clicked in the signup!")
+        let newVc = MainViewController()
+        newVc.modalPresentationStyle = .overFullScreen
+        navigationController?.navigationItem.titleView = nil
+        navigationController?.setViewControllers([newVc], animated: true)
     }
 }
 

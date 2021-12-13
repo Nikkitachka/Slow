@@ -10,10 +10,14 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+protocol ButtonDelegate: AnyObject {
+    func onButtonTap(sender: UIButton)
+}
+
 class ConfigureController: UIViewController {
     
     private let database = Database.database().reference()
-    
+    weak var delegate: ButtonDelegate?
     private let email: String
     private var cups: Int = 10
     private var waterVolume: Int = 2000
@@ -25,7 +29,6 @@ class ConfigureController: UIViewController {
     }
     @objc
     func goToMainViewController() {
-
         if let age = Int(ageInput.textField.text!),
             let height = Float(heightInput.textField.text!),
             let uid = Auth.auth().currentUser?.uid,
@@ -57,13 +60,13 @@ class ConfigureController: UIViewController {
                 }
 
             })
-                
+            onButtonTap(sender: nextButton)
                 
             
-            let newVc = MainViewController()
-            newVc.modalPresentationStyle = .overFullScreen
-            navigationController?.navigationItem.titleView = nil
-            navigationController?.setViewControllers([newVc], animated: true)
+//            let newVc = MainViewController()
+//            newVc.modalPresentationStyle = .overFullScreen
+//            navigationController?.navigationItem.titleView = nil
+//            navigationController?.setViewControllers([newVc], animated: true)
         }
     }
     
@@ -229,6 +232,9 @@ class ConfigureController: UIViewController {
         if weight > 200 { weightInput.textField.text = "200" }
         if height > 300 { heightInput.textField.text = "300" }
         if (Double(ageInput.textField.text ?? "0") ?? 0) > 120 { ageInput.textField.text = "120" }
+    }
+    func onButtonTap (sender: UIButton) {
+        delegate?.onButtonTap(sender: sender)
     }
     
 }

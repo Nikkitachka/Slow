@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, ButtonDelegate {
     
     private var database = Database.database().reference()
     private var indexPathOfSelected = IndexPath()
@@ -61,16 +61,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate {
                let height = userThings["height"] as? Float,
                let weight = userThings["weight"] as? Float
                     {
+                
                 let vc = ConfigureController(email)
                 vc.setAllParameters(age: age, sex: sex == "Male", height: height, weight: weight)
-                vc.modalPresentationStyle = .overFullScreen
-                self.navigationController?.navigationItem.titleView = nil
-                self.tabBarController?.tabBar.isHidden = true
-                self.navigationController?.setViewControllers([vc], animated: true)
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
+//                vc.modalPresentationStyle = .overFullScreen
+//                self.navigationController?.navigationItem.titleView = nil
+//                self.tabBarController?.tabBar.isHidden = true
+//                self.navigationController?.setViewControllers([vc], animated: true)
+                
                 
             }
+            
         })
         
+    }
+    func onButtonTap(sender: UIButton) {
+            print("This button was clicked in the profile!")
+            self.navigationController?.popToRootViewController(animated: true)
     }
     private var signOutButton: UIButton = {
         let button = UIButton(type: .system)
