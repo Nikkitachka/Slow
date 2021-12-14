@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 protocol ButtonDelegate: AnyObject {
-    func onButtonTap(sender: UIButton)
+    func nextButtonTap(sender: UIButton)
 }
 
 class ConfigureController: UIViewController {
@@ -21,11 +21,12 @@ class ConfigureController: UIViewController {
     private let email: String
     private var cups: Int = 10
     private var waterVolume: Int = 2000
-    public func setAllParameters (age: Int, sex: Bool, height: Float, weight : Float ){
+    public func setAllParameters (age: Int, sex: Bool, height: Int, weight : Int ){
         ageInput.textField.text = "\(age)"
         sexInput.sexSwitch.sexSwitch.isOn = sex
         heightInput.textField.text = "\(height)"
         weightInput.textField.text = "\(weight)"
+        textFieldDidChange()
     }
     @objc
     func goToMainViewController() {
@@ -60,7 +61,7 @@ class ConfigureController: UIViewController {
                 }
 
             })
-            onButtonTap(sender: nextButton)
+            nextButtonTap(sender: nextButton)
                 
             
 //            let newVc = MainViewController()
@@ -173,8 +174,6 @@ class ConfigureController: UIViewController {
         self.title = "Configure"
         
         
-        finalVol.volumeLabel.text = ageInput.textField.text
-        
         //keyboard hide
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -228,13 +227,13 @@ class ConfigureController: UIViewController {
         waterVolume = Int(volume)
         cups = Int(glass)
         finalVol.volumeLabel.text = volume > 0 ? String(Int(volume)) + " мл" : "2000 мл"
-        finalVol.glassLabel.text = glass > 0 ? String(Int(round(glass))) + " стаканов" : "10 стаканов"
+        finalVol.glassLabel.text = glass > 0 ? String(Int(glass)) + " стаканов" : "10 стаканов"
         if weight > 200 { weightInput.textField.text = "200" }
         if height > 300 { heightInput.textField.text = "300" }
         if (Double(ageInput.textField.text ?? "0") ?? 0) > 120 { ageInput.textField.text = "120" }
     }
-    func onButtonTap (sender: UIButton) {
-        delegate?.onButtonTap(sender: sender)
+    func nextButtonTap (sender: UIButton) {
+        delegate?.nextButtonTap(sender: sender)
     }
     
 }

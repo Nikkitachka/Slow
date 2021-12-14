@@ -19,7 +19,7 @@ class finalWaterVolume: UIView {
     
     var volumeLabel: UILabel = {
         let label = UILabel()
-        label.text = "1500 ml"
+        label.text = "2000 мл"
         label.font = UIFont.boldSystemFont(ofSize: 48)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -27,7 +27,7 @@ class finalWaterVolume: UIView {
     
     var glassLabel: UILabel = {
         let label = UILabel()
-        label.text = "6 стаканов"
+        label.text = "10 стаканов"
         label.font = UIFont.boldSystemFont(ofSize: 36)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

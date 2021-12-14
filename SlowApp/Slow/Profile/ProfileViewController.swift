@@ -52,34 +52,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, ButtonD
         
         
         let user = database.child(Auth.auth().currentUser!.uid)
-        user.observe(.value, with: {snapshot in
-            
-            if let userThings = snapshot.value as? [String : Any],
-                  let email = Auth.auth().currentUser?.email,
-               let sex = userThings["sex"] as? String,
-               let age = userThings["age"] as? Int,
-               let height = userThings["height"] as? Float,
-               let weight = userThings["weight"] as? Float
-                    {
-                
-                let vc = ConfigureController(email)
-                vc.setAllParameters(age: age, sex: sex == "Male", height: height, weight: weight)
-                vc.delegate = self
-                self.navigationController?.pushViewController(vc, animated: true)
-//                vc.modalPresentationStyle = .overFullScreen
-//                self.navigationController?.navigationItem.titleView = nil
-//                self.tabBarController?.tabBar.isHidden = true
-//                self.navigationController?.setViewControllers([vc], animated: true)
-                
-                
-            }
-            
-        })
+        if let email = Auth.auth().currentUser?.email {
+            let vc = ConfigureController(email)
+            user.observe(.value, with: {snapshot in
+
+                if let userThings = snapshot.value as? [String : Any],
+                   let sex = userThings["sex"] as? String,
+                   let age = userThings["age"] as? Int,
+                   let height = userThings["height"] as? Int,
+                   let weight = userThings["weight"] as? Int
+                        {
+                    vc.setAllParameters(age: age, sex: sex == "Male", height: height, weight: weight)
+                    vc.delegate = self
+                }
+
+            })
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
-    }
-    func onButtonTap(sender: UIButton) {
-            print("This button was clicked in the profile!")
-            self.navigationController?.popToRootViewController(animated: true)
+        
     }
     private var signOutButton: UIButton = {
         let button = UIButton(type: .system)
@@ -224,6 +215,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, ButtonD
         })
     }
     
+    func nextButtonTap(sender: UIButton) {
+            self.navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 extension ProfileViewController: UICollectionViewDataSource {

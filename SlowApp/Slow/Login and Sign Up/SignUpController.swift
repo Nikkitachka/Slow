@@ -90,7 +90,7 @@ class SignUpController: UIViewController, ButtonDelegate {
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
         // Тут в эмуляторе вылазит прдложенный пароль, который нельзя отменить :(
-//        tf.isSecureTextEntry = true
+        tf.isSecureTextEntry = true
         tf.attributedPlaceholder = NSAttributedString(
             string: "пароль",
             attributes: [.paragraphStyle: centeredParagraphStyle]
@@ -184,8 +184,7 @@ class SignUpController: UIViewController, ButtonDelegate {
             ])
 
     }
-    func onButtonTap(sender: UIButton) {
-        print("This button was clicked in the signup!")
+    func nextButtonTap(sender: UIButton) {
         let newVc = MainViewController()
         newVc.modalPresentationStyle = .overFullScreen
         navigationController?.navigationItem.titleView = nil
