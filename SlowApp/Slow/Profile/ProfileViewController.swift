@@ -43,10 +43,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, ButtonD
     @objc private func signOutButtonPressed (){
         try? Auth.auth().signOut()
         tabBarController?.tabBar.isHidden = true
-        let authControllers = SignUpController()
-        authControllers.modalPresentationStyle = .overFullScreen
-        navigationController?.navigationItem.titleView = nil
-        navigationController?.setViewControllers([authControllers], animated: true)
+        let authControllers = UINavigationController(rootViewController: SignUpController())
+        tabBarController?.dismiss(animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.view.window?.rootViewController = authControllers
+//        authControllers.modalPresentationStyle = .overFullScreen
+//        navigationController?.navigationItem.titleView = nil
+//        navigationController?.setViewControllers([authControllers], animated: true)
     }
     @objc private func configureButtonPressed (){
         
